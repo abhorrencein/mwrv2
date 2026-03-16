@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — MWR Collective</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{background:#0A0908;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden;min-height:100vh}
+:root{
+  --ink:#0A0908;--paper:#F7F5F0;
+  --burg:#C8203A;--burg-d:#8B1525;
+  --amber:#D4823E;--teal:#1B7A65;--blue:#2058A8;
+  --f-d:'Syne',sans-serif;--f-m:'DM Mono',monospace;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+#cur{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:white;mix-blend-mode:difference}
+#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,0.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
+body.hov #crr{width:54px;height:54px;opacity:.1}
+#plasma{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
+.nav-logo{font-family:var(--f-d);font-size:1.15rem;font-weight:800;letter-spacing:.05em;color:white;line-height:1}
+.nav-logo em{color:var(--burg);font-style:normal}
+.nav-tag{font-family:var(--f-m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-link{font-family:var(--f-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.42);transition:color .2s}
+.nav-link:hover,.nav-link.active{color:white}
+.nav-cta{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.38rem 1rem;border:1px solid var(--burg);color:var(--burg);transition:all .2s}
+.nav-cta:hover{background:var(--burg);color:white}
+#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+.bb-l{display:flex;gap:1.75rem}
+.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:.42rem}
+.bb-d{width:5px;height:5px;border-radius:50%}
+.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.13)}
+
+/* FULL PAGE LAYOUT — centered, minimal */
+main{
+  position:relative;z-index:10;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:52px;
+  padding-bottom:40px;
+}
+
+/* LEFT — big headline */
+.ct-left{
+  padding:5rem 3.5rem 5rem 3.2rem;
+  border-right:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.ct-ghost{
+  position:absolute;left:-1rem;bottom:-2rem;
+  font-family:var(--f-d);font-size:28vw;font-weight:800;
+  color:rgba(255,255,255,.018);line-height:1;letter-spacing:-.06em;
+  pointer-events:none;user-select:none;
+}
+.ct-top{}
+.ct-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:.7rem;margin-bottom:2rem}
+.ct-eyebrow::before{content:'';width:20px;height:1px;background:var(--burg);display:inline-block}
+.ct-headline{font-family:var(--f-d);font-size:clamp(3rem,7vw,6.5rem);font-weight:800;line-height:.88;letter-spacing:-.05em;color:white;margin-bottom:2rem}
+.ct-headline em{color:var(--burg);font-style:normal;display:block}
+.ct-desc{font-size:1rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.88;max-width:400px}
+.ct-desc strong{font-weight:500;color:rgba(255,255,255,.72)}
+
+.ct-bottom{}
+.ct-details{display:flex;flex-direction:column;gap:1.5rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.07)}
+.ct-detail-label{font-family:var(--f-m);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.4rem}
+.ct-detail-val{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.6}
+.ct-detail-val a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.ct-detail-val a:hover{color:white}
+
+/* RIGHT — form */
+.ct-right{
+  padding:5rem 3.2rem 5rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.ct-form-label{font-family:var(--f-m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:2.5rem}
+
+.form-group{margin-bottom:1.5rem}
+.form-label{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);display:block;margin-bottom:.6rem}
+.form-input,.form-textarea{
+  width:100%;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  color:white;font-family:var(--f-b);font-size:.95rem;font-weight:300;
+  padding:.85rem 1rem;
+  outline:none;
+  transition:border-color .2s,background .2s;
+  font-family:'Manrope',sans-serif;
+  resize:none;
+}
+.form-input:focus,.form-textarea:focus{
+  border-color:rgba(255,255,255,.3);
+  background:rgba(255,255,255,.06);
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.22)}
+.form-textarea{min-height:130px;line-height:1.6}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+.form-submit{
+  width:100%;
+  font-family:var(--f-m);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.85rem 1.5rem;
+  background:var(--burg);color:white;border:1px solid var(--burg);
+  cursor:none;transition:background .2s;
+  margin-top:.5rem;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.form-submit:hover{background:var(--burg-d)}
+.form-submit::after{content:'→';transition:transform .25s var(--ease-out)}
+.form-submit:hover::after{transform:translateX(4px)}
+
+.form-note{font-family:var(--f-m);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:1rem;line-height:1.6;text-align:center}
+
+/* success state */
+.form-success{display:none;padding:2.5rem;border:1px solid rgba(27,122,101,.3);background:rgba(27,122,101,.06);text-align:center}
+.form-success.show{display:block}
+.fs-title{font-family:var(--f-d);font-size:1.3rem;font-weight:800;color:var(--teal);margin-bottom:.5rem}
+.fs-sub{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.65}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* Logo image fixes */
+.nav-brand img { display:block; height:30px; width:auto; }
+.nav-brand { gap:4px; }
+
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="crr"></div>
+<canvas id="plasma"></canvas>
+<nav>
+  <a href="/" class="nav-brand"><img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:28px;width:auto;display:block"><span class="nav-tag">Politely Radical</span></a>
+  <div class="nav-r">
+    <a href="/services" class="nav-link">Services</a>
+    <a href="/work" class="nav-link">Our Work</a>
+    <a href="/about" class="nav-link">About</a>
+    <a href="/people" class="nav-link">People</a>
+    <a href="/contact" class="nav-cta active">Work With Us</a>
+  </div>
+</nav>
+
+<main>
+  <div class="ct-left rv">
+    <div class="ct-ghost">GO</div>
+    <div class="ct-top">
+      <p class="ct-eyebrow">Work With Us</p>
+      <h1 class="ct-headline">From ambition<br><em>to action.</em></h1>
+      <p class="ct-desc">Tell us about the problem. <strong>We'll figure out whether we're the right people for it</strong> — and if we're not, we'll say so. No sales process, no deck before the conversation.</p>
+    </div>
+    <div class="ct-bottom">
+      <div class="ct-details">
+        <div>
+          <div class="ct-detail-label">Email</div>
+          <div class="ct-detail-val"><a href="mailto:contact@mwrcollective.com">contact@mwrcollective.com</a></div>
+        </div>
+        <div>
+          <div class="ct-detail-label">Connect</div>
+          <div class="ct-detail-val"><a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener">LinkedIn →</a></div>
+        </div>
+        <div>
+          <div class="ct-detail-label">Recognition</div>
+          <div class="ct-detail-val" style="display:flex;flex-direction:column;gap:.35rem">
+            <span>DPIIT Recognised Startup</span>
+            <span style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:rgba(255,255,255,.28);text-transform:uppercase">Mindworld Research Pvt. Ltd.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ct-right rv" style="transition-delay:.1s">
+    <p class="ct-form-label">Send us a message</p>
+
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your name</label>
+          <input class="form-input" type="text" name="name" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organisation</label>
+          <input class="form-input" type="text" name="organisation" placeholder="Where you work">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">What are you working on?</label>
+        <textarea class="form-textarea" name="message" placeholder="Tell us about the problem, the context, and what kind of help you're looking for. The more specific, the better." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message</button>
+      <p class="form-note">We typically respond within 2 working days.</p>
+    </form>
+
+    <div class="form-success" id="form-success">
+      <div class="fs-title">Message sent.</div>
+      <div class="fs-sub">We'll be in touch within 2 working days. If it's urgent, email us directly at contact@mwrcollective.com</div>
+    </div>
+  </div>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10">
+  <div>
+    <a href="/" style="text-decoration:none;display:flex;flex-direction:column;gap:5px">
+      <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:22px;width:auto;display:block;opacity:.7">
+      <span style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)">Politely Radical</span>
+    </a>
+    <p style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-top:.85rem;max-width:210px">Research, strategy, and evidence for people building things that matter.</p>
+  </div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Navigate</div>
+    <div style="display:flex;flex-direction:column;gap:.55rem">
+      <a href="/services" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s">Services</a>
+      <a href="/work" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Our Work</a>
+      <a href="/about" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">About</a>
+      <a href="/people" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">People</a>
+      <a href="/contact" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Contact</a>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Find Us</div>
+    <div style="display:flex;flex-direction:column;gap:.55rem">
+      <a href="mailto:contact@mwrcollective.com" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">contact@mwrcollective.com</a>
+      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">LinkedIn</a>
+      <span style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
+    </div>
+  </div>
+</footer>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:var(--ink);position:relative;z-index:10">
+  <span style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.16)">© 2026 Mindworld Research Private Limited</span>
+  <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1)">New Delhi · India</span>
+</div>
+
+</main>
+
+<div id="bbar">
+  <div class="bb-l">
+    <div class="bb-i"><div class="bb-d" style="background:var(--burg)"></div>Contact</div>
+    <div class="bb-i"><div class="bb-d" style="background:rgba(255,255,255,.2)"></div>New Delhi · India</div>
+  </div>
+  <div class="bb-r">Politely Radical — MWR Collective 2026</div>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),crr=document.getElementById('crr');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,rx=mx,ry=my;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function t(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.07;ry+=(my-ry)*.07;cur.style.left=cx+'px';cur.style.top=cy+'px';crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(t)})();
+document.querySelectorAll('a,button,.form-input,.form-textarea,.form-submit').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
+
+// Form submit
+const form=document.getElementById('contact-form');
+const success=document.getElementById('form-success');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=form.querySelector('.form-submit');
+  btn.textContent='Sending...';btn.disabled=true;
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){form.style.display='none';success.classList.add('show')}
+    else{btn.textContent='Something went wrong — try emailing directly';btn.disabled=false}
+  }catch{btn.textContent='Something went wrong — try emailing directly';btn.disabled=false}
+});
+
+// PLASMA — burgundy dominant
+(function(){
+  function h(c){return[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)]}
+  const orbs=[
+    {c:'#C8203A',xf:.20,yf:.24,xp:0,  yp:0.9,xa:.40,ya:.34,xc:.50,yc:.45,r:580,a:.68},
+    {c:'#8B1525',xf:.14,yf:.18,xp:2.0,yp:0.5,xa:.34,ya:.40,xc:.35,yc:.62,r:520,a:.55},
+    {c:'#C8203A',xf:.22,yf:.12,xp:1.4,yp:2.6,xa:.30,ya:.28,xc:.68,yc:.28,r:500,a:.52},
+    {c:'#8B1525',xf:.10,yf:.20,xp:3.0,yp:0.8,xa:.36,ya:.32,xc:.22,yc:.35,r:460,a:.45},
+    {c:'#D4823E',xf:.18,yf:.10,xp:0.8,yp:2.2,xa:.28,ya:.36,xc:.78,yc:.72,r:420,a:.28},
+    {c:'#C8203A',xf:.08,yf:.16,xp:1.9,yp:1.5,xa:.40,ya:.26,xc:.15,yc:.75,r:400,a:.35},
+    {c:'#8B1525',xf:.24,yf:.14,xp:2.7,yp:3.0,xa:.22,ya:.38,xc:.85,yc:.18,r:360,a:.28},
+    {c:'#6B3FA0',xf:.12,yf:.22,xp:0.3,yp:0.7,xa:.26,ya:.44,xc:.55,yc:.88,r:340,a:.20},
+  ];
+  const canvas=document.getElementById('plasma'),ctx=canvas.getContext('2d');
+  let W,H,t=0,pmx=.5,pmy=.5;
+  const RGB=orbs.map(o=>h(o.c));
+  function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+  window.addEventListener('mousemove',e=>{pmx=e.clientX/W;pmy=e.clientY/H});
+  function draw(){
+    ctx.fillStyle='#0A0908';ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='screen';
+    orbs.forEach((orb,i)=>{
+      let x=(orb.xc+Math.sin(t*orb.xf+orb.xp)*orb.xa)*W;
+      let y=(orb.yc+Math.cos(t*orb.yf+orb.yp)*orb.ya)*H;
+      x+=(pmx*W-x)*.02;y+=(pmy*H-y)*.02;
+      const r=orb.r*(0.82+Math.sin(t*orb.xf*1.7+i*.8)*.18);
+      const a=orb.a*0.48*(0.78+Math.sin(t*orb.yf*1.3+i*1.2)*.22);
+      const g=ctx.createRadialGradient(x,y,0,x,y,r);
+      const[R,G,B]=RGB[i];
+      g.addColorStop(0,`rgba(${R},${G},${B},${a})`);g.addColorStop(.3,`rgba(${R},${G},${B},${a*.65})`);
+      g.addColorStop(.6,`rgba(${R},${G},${B},${a*.25})`);g.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    });
+    for(let i=0;i<6;i++){
+      const ly=H*(Math.abs(Math.sin(t*.07+i*1.37+i*.41))%1);
+      const a=(0.04+Math.sin(t*.4+i*1.9)*.018)*0.48;
+      const hw=100+Math.sin(t*.12+i)*65;
+      const lx=W*(Math.abs(Math.sin(t*.04+i*2.6))%1);
+      const[R,G,B]=RGB[i%RGB.length];
+      const lg=ctx.createLinearGradient(lx-hw,ly,lx+hw,ly);
+      lg.addColorStop(0,`rgba(${R},${G},${B},0)`);lg.addColorStop(.5,`rgba(${R},${G},${B},${a})`);lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1,hw*2,2);
+    }
+    ctx.globalCompositeOperation='source-over';
+    t+=.006;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+
+<style>
+@media(max-width:768px){
+  html{font-size:15px}body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.25rem}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
+  #bbar{padding:0 1.25rem}
+  .bb-r{display:none}
+  #page-hero{padding:calc(52px + 3rem) 1.25rem 3rem;grid-template-columns:1fr;gap:2rem}
+  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
+  .ph-ghost{display:none}
+}
+</style>
+
+
+<style>
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:768px){
+  html{font-size:15px}
+  body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.25rem}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
+  #bbar{padding:0 1.25rem}
+  .bb-r{display:none}
+
+  /* Page heroes */
+  #page-hero{
+    padding:calc(52px + 3rem) 1.25rem 3rem;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
+  .ph-ghost{display:none}
+  .ph-jumps{grid-template-columns:1fr 1fr}
+
+  /* Services */
+  #approach{grid-template-columns:1fr;padding:2.5rem 1.25rem}
+  .approach-text{font-size:1.1rem}
+  .svc-main{grid-template-columns:1fr}
+  .svc-left{
+    position:relative;top:auto;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:2rem 1.25rem
+  }
+  .svc-right{padding:2rem 1.25rem}
+  .connect-flow{grid-template-columns:1fr 1fr}
+  #connect{padding:4rem 1.25rem}
+  .connect-header{margin-bottom:2rem}
+  .connect-cta{flex-direction:column;gap:1.5rem;padding:2rem 1.25rem}
+  .cc-actions{width:100%;flex-direction:column}
+  .cc-actions .btn-p,.cc-actions .btn-o{width:100%;justify-content:center}
+
+  /* Work */
+  .sector-header{
+    grid-template-columns:40px 1fr auto;
+    padding:1.5rem 1.25rem;
+    gap:.85rem
+  }
+  .sh-tagline{display:none}
+  .sector-body-content{
+    grid-template-columns:1fr;
+    padding:1.5rem 1.25rem 2.5rem
+  }
+  #work-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .wc-right{flex-direction:column;width:100%}
+  .wc-right .btn-p,.wc-right .btn-o{width:100%;justify-content:center}
+  #sectors-note{flex-direction:column;padding:1.5rem 1.25rem;gap:.75rem}
+
+  /* About */
+  #manifesto{
+    grid-template-columns:1fr;
+    padding:4rem 1.25rem;
+    gap:3rem
+  }
+  .mf-headline{font-size:clamp(1.8rem,8vw,2.6rem)}
+  #name-section{
+    grid-template-columns:1fr;
+    padding:2.5rem 1.25rem;
+    gap:1rem
+  }
+  #approach-grid{padding:4rem 1.25rem}
+  .ag-grid{grid-template-columns:1fr 1fr}
+  #about-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .ac-right{flex-direction:column;width:100%}
+  .ac-right .btn-p,.ac-right .btn-o{width:100%;justify-content:center}
+  #page-hero .ph-inner{grid-template-columns:1fr;gap:2rem}
+
+  /* People */
+  .person-card{grid-template-columns:1fr}
+  .pc-left{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:2rem 1.25rem
+  }
+  .pc-right{padding:2rem 1.25rem}
+  #people-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .pct-right{flex-direction:column;width:100%}
+  .pct-right .btn-p,.pct-right .btn-o{width:100%;justify-content:center}
+
+  /* Contact */
+  main[style*="grid-template-columns:1fr 1fr"],
+  main{grid-template-columns:1fr !important}
+  .ct-left{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    padding:4rem 1.25rem 3rem
+  }
+  .ct-right{padding:3rem 1.25rem 4rem}
+  .ct-headline{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .form-row{grid-template-columns:1fr}
+}
+
+@media(min-width:769px) and (max-width:1024px){
+  nav,#bbar{padding-left:2rem;padding-right:2rem}
+  #page-hero{padding-left:2rem;padding-right:2rem}
+  .svc-main{grid-template-columns:220px 1fr}
+  .person-card{grid-template-columns:260px 1fr}
+  .sector-body-content{grid-template-columns:1fr}
+  #manifesto{padding:5rem 2rem;gap:3rem}
+  .connect-flow{grid-template-columns:1fr 1fr}
+}
+</style>
+
+</body>
+</html>

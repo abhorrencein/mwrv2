@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — MWR Collective</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px;scroll-behavior:smooth}
+body{background:#0A0908;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden}
+:root{
+  --ink:#0A0908;--paper:#F7F5F0;--paper2:#E8E4DB;
+  --burg:#C8203A;--burg-d:#8B1525;
+  --amber:#D4823E;--teal:#1B7A65;--blue:#2058A8;--violet:#6B3FA0;
+  --f-d:'Syne',sans-serif;--f-m:'DM Mono',monospace;
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+}
+
+/* CURSOR */
+#cur{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:white;mix-blend-mode:difference}
+#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,0.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
+body.hov #crr{width:54px;height:54px;opacity:.1}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
+.nav-logo{font-family:var(--f-d);font-size:1.15rem;font-weight:800;letter-spacing:.05em;color:white;line-height:1}
+.nav-logo em{color:var(--burg);font-style:normal}
+.nav-tag{font-family:var(--f-m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-link{font-family:var(--f-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.42);transition:color .2s}
+.nav-link:hover,.nav-link.active{color:white}
+.nav-cta{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.38rem 1rem;border:1px solid var(--burg);color:var(--burg);transition:all .2s}
+.nav-cta:hover{background:var(--burg);color:white}
+
+/* BBAR */
+#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+.bb-l{display:flex;gap:1.75rem}
+.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:.42rem}
+.bb-d{width:5px;height:5px;border-radius:50%}
+.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.13)}
+
+/* ══ PAGE HERO ══ */
+#page-hero{
+  padding:calc(52px + 5rem) 3.2rem 5rem;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  position:relative;overflow:hidden;
+}
+.ph-ghost{
+  position:absolute;right:-1rem;top:50%;transform:translateY(-50%);
+  font-family:var(--f-d);font-size:28vw;font-weight:800;
+  color:rgba(255,255,255,0.022);line-height:1;letter-spacing:-.06em;
+  pointer-events:none;user-select:none;
+}
+.ph-top{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;
+  margin-bottom:4rem;
+}
+.ph-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:.7rem;margin-bottom:1.25rem}
+.ph-eyebrow::before{content:'';width:20px;height:1px;background:var(--burg);display:inline-block}
+.ph-title{font-family:var(--f-d);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;line-height:.9;letter-spacing:-.045em;color:white}
+.ph-title em{color:var(--burg);font-style:normal}
+.ph-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.88;align-self:end}
+.ph-intro strong{font-weight:500;color:rgba(255,255,255,.75)}
+
+/* Jump links — bolder now */
+.ph-jumps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,.06);
+}
+.ph-jump{
+  font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;padding:1.1rem 1.25rem;
+  background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;gap:.5rem;
+  transition:background .2s,padding-left .2s var(--ease-out);
+  border-top:2px solid transparent;
+}
+.ph-jump:hover{background:rgba(255,255,255,.055);padding-left:1.6rem}
+.ph-jump.j0{border-top-color:var(--burg)}.ph-jump.j1{border-top-color:var(--amber)}
+.ph-jump.j2{border-top-color:var(--teal)}.ph-jump.j3{border-top-color:var(--blue)}
+.ph-jump-num{font-size:.52rem;color:rgba(255,255,255,.28);letter-spacing:.18em}
+.ph-jump-name{color:rgba(255,255,255,.6);transition:color .2s}
+.ph-jump:hover .ph-jump-name{color:white}
+.ph-jump-arrow{font-size:.55rem;color:rgba(255,255,255,.2);transition:all .2s}
+.ph-jump:hover .ph-jump-arrow{color:rgba(255,255,255,.5)}
+
+/* ══ APPROACH — bigger, typographic ══ */
+#approach{
+  padding:4.5rem 3.2rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:grid;grid-template-columns:200px 1fr;gap:4rem;align-items:start;
+  background:rgba(255,255,255,.015);
+}
+.approach-label{
+  font-family:var(--f-m);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);padding-top:.3rem;
+}
+.approach-text{
+  font-family:var(--f-d);font-size:clamp(1.4rem,2.5vw,2.1rem);font-weight:700;
+  line-height:1.15;letter-spacing:-.025em;color:rgba(255,255,255,.72);
+}
+.approach-text em{color:white;font-style:normal}
+.approach-text span{color:var(--burg)}
+
+/* ══ SERVICE BLOCKS ══ */
+.svc-block{
+  border-bottom:1px solid rgba(255,255,255,.06);
+  position:relative;overflow:hidden;
+}
+.svc-block.s-burg{--sc:var(--burg);--scr:200,32,58}
+.svc-block.s-amber{--sc:var(--amber);--scr:212,130,62}
+.svc-block.s-teal{--sc:var(--teal);--scr:27,122,101}
+.svc-block.s-blue{--sc:var(--blue);--scr:32,88,168}
+
+.svc-top-bar{height:3px;background:var(--sc);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease-out)}
+.svc-block.vis .svc-top-bar{transform:scaleX(1)}
+
+.svc-main{display:grid;grid-template-columns:300px 1fr}
+
+/* LEFT — anchored identity with real content */
+.svc-left{
+  padding:3.5rem 2.5rem 3.5rem 3.2rem;
+  border-right:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;gap:2rem;
+  position:sticky;top:52px;height:fit-content;
+}
+.svc-num{font-family:var(--f-m);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.svc-title{font-family:var(--f-d);font-size:1.45rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:white;margin:.6rem 0}
+/* Big manifesto line — replaces "led by" */
+.svc-mantra{
+  font-family:var(--f-d);font-size:1rem;font-weight:700;
+  color:var(--sc);line-height:1.25;letter-spacing:-.01em;
+  padding:1.1rem 0;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.svc-context{
+  font-size:.85rem;font-weight:300;color:rgba(255,255,255,.32);
+  line-height:1.65;
+}
+.svc-jump-link{
+  font-family:var(--f-m);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--sc);display:flex;align-items:center;gap:.4rem;
+  margin-top:auto;transition:gap .2s var(--ease-out);
+}
+.svc-jump-link:hover{gap:.7rem}
+.svc-jump-link::after{content:'↗'}
+
+/* RIGHT */
+.svc-right{padding:3.5rem 3.2rem 3.5rem 3rem;display:flex;flex-direction:column;gap:2.75rem}
+
+.svc-desc{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.9;max-width:680px}
+.svc-desc strong{font-weight:500;color:rgba(255,255,255,.82)}
+
+.svc-section-label{font-family:var(--f-m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem}
+
+.caps-grid{display:flex;flex-wrap:wrap;gap:.4rem}
+.cap{font-family:var(--f-m);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .75rem;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.38);background:rgba(255,255,255,.02);transition:all .2s}
+.svc-block:hover .cap{border-color:rgba(255,255,255,.13);color:rgba(255,255,255,.55)}
+
+/* Experience items — active voice */
+.exp-grid{display:flex;flex-direction:column;gap:.45rem}
+.exp-item{
+  display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;
+  padding:.95rem 1.1rem;
+  border:1px solid rgba(255,255,255,.05);
+  background:rgba(255,255,255,.018);
+  transition:border-color .2s,background .2s;
+}
+.exp-item:hover{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.exp-dot{width:6px;height:6px;border-radius:50%;background:var(--sc);flex-shrink:0;margin-top:.38rem;opacity:.75}
+.exp-text{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.68}
+.exp-text strong{font-weight:500;color:rgba(255,255,255,.78)}
+
+/* ══ CONNECT ══ */
+#connect{background:var(--paper);padding:6rem 3.2rem;position:relative;overflow:hidden}
+.connect-ghost{position:absolute;right:-1rem;bottom:-2rem;font-family:var(--f-d);font-size:22vw;font-weight:800;color:rgba(10,9,8,.04);line-height:1;letter-spacing:-.06em;pointer-events:none}
+.connect-header{margin-bottom:4rem}
+.connect-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--burg);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.connect-eyebrow::before{content:'';width:20px;height:1px;background:var(--burg);display:inline-block}
+.connect-title{font-family:var(--f-d);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--ink)}
+.connect-title em{color:var(--burg);font-style:normal}
+.connect-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(10,9,8,.08);position:relative;z-index:2}
+.cf-card{background:var(--paper);padding:2rem 1.75rem;position:relative;overflow:hidden;transition:background .2s;cursor:none}
+.cf-card:hover{background:var(--paper2)}
+.cf-bar{position:absolute;top:0;left:0;right:0;height:2px}
+.cf-num{font-family:var(--f-m);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(10,9,8,.28);margin-bottom:.85rem}
+.cf-title{font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.1}
+.cf-desc{font-size:.88rem;font-weight:300;color:rgba(10,9,8,.48);line-height:1.65;margin-bottom:1.1rem}
+.cf-arrow{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(10,9,8,.3);display:flex;align-items:center;gap:.4rem}
+
+.connect-cta{margin-top:3rem;padding:2.5rem 3rem;background:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:3rem;position:relative;z-index:2}
+.cc-text{font-size:1rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7}
+.cc-text strong{font-weight:500;color:white}
+.cc-actions{display:flex;gap:.75rem;flex-shrink:0}
+.btn-p{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;background:var(--burg);color:white;border:1px solid var(--burg);transition:background .2s;display:inline-flex;align-items:center;gap:.4rem}
+.btn-p:hover{background:var(--burg-d)}
+.btn-o{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.16);transition:all .2s}
+.btn-o:hover{color:white;border-color:rgba(255,255,255,.42)}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+/* Logo image fixes */
+.nav-brand img { display:block; height:30px; width:auto; }
+.nav-brand { gap:4px; }
+
+</style>
+</head>
+<body>
+<canvas id="plasma" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.9"></canvas>
+<div id="cur"></div>
+<div id="crr"></div>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:28px;width:auto;display:block">
+    <span class="nav-tag">Politely Radical</span>
+  </a>
+  <div class="nav-r">
+    <a href="/services" class="nav-link active">Services</a>
+    <a href="/work" class="nav-link">Our Work</a>
+    <a href="/about" class="nav-link">About</a>
+    <a href="/people" class="nav-link">People</a>
+    <a href="/contact" class="nav-cta">Work With Us</a>
+  </div>
+</nav>
+
+<main style="position:relative;z-index:10">
+
+<div id="page-hero">
+  <div class="ph-ghost">04</div>
+  <div class="ph-top">
+    <div class="rv">
+      <p class="ph-eyebrow">How We Work</p>
+      <h1 class="ph-title">Four ways<br>we <em>work.</em></h1>
+    </div>
+    <p class="ph-intro rv" style="transition-delay:.1s">
+      <strong>Distinct capabilities, deeply connected.</strong> Each pillar is a complete service on its own — and each makes the others stronger. Evidence informs strategy. Advisory steadies execution. Communication makes it land.
+    </p>
+  </div>
+  <div class="ph-jumps rv" style="transition-delay:.18s">
+    <a href="#strategy" class="ph-jump j0">
+      <span class="ph-jump-num">01</span>
+      <span class="ph-jump-name">Strategy &amp; Public Policy</span>
+      <span class="ph-jump-arrow">↓</span>
+    </a>
+    <a href="#advisory" class="ph-jump j1">
+      <span class="ph-jump-num">02</span>
+      <span class="ph-jump-name">Institutional Advisory</span>
+      <span class="ph-jump-arrow">↓</span>
+    </a>
+    <a href="#evidence" class="ph-jump j2">
+      <span class="ph-jump-num">03</span>
+      <span class="ph-jump-name">Evidence, Data &amp; Learning</span>
+      <span class="ph-jump-arrow">↓</span>
+    </a>
+    <a href="#knowledge" class="ph-jump j3">
+      <span class="ph-jump-num">04</span>
+      <span class="ph-jump-name">Knowledge &amp; Communication</span>
+      <span class="ph-jump-arrow">↓</span>
+    </a>
+  </div>
+</div>
+
+<!-- APPROACH — bigger, typographic -->
+<div id="approach" class="rv">
+  <span class="approach-label">Our approach</span>
+  <p class="approach-text">
+    <em>Academic rigour.</em> Field-tested operations.<br>
+    <span>Strategic instinct.</span> Not one or two —<br>
+    <em>all three, in every engagement.</em>
+  </p>
+</div>
+
+<!-- 01 STRATEGY -->
+<div class="svc-block s-burg" id="strategy">
+  <div class="svc-top-bar"></div>
+  <div class="svc-main">
+    <div class="svc-left">
+      <div class="svc-num">01 — Strategy</div>
+      <div class="svc-title">Strategy &amp; Public Policy</div>
+      <div class="svc-mantra">"Decide the direction.<br>Shape the rules."</div>
+      <p class="svc-context">We work at inflection points — where priorities collide and the conventional playbook stops working. Strategy that survives contact with reality.</p>
+      <a href="/contact" class="svc-jump-link">Discuss a project</a>
+    </div>
+    <div class="svc-right">
+      <p class="svc-desc">
+        Strategic and policy questions don't fail because of bad analysis. They fail because the analysis doesn't account for how systems actually behave — the politics, the incentives, the institutional inertia. <strong>We help organisations make choices that hold, not just choices that look right on paper.</strong>
+      </p>
+      <div>
+        <div class="svc-section-label">Capabilities</div>
+        <div class="caps-grid">
+          <span class="cap">Strategy Formulation</span><span class="cap">Policy Analysis</span>
+          <span class="cap">System Diagnostics</span><span class="cap">Reform Design</span>
+          <span class="cap">Options Assessment</span><span class="cap">Trade-off Mapping</span>
+          <span class="cap">Stakeholder Engagement</span><span class="cap">Macroeconomic Analysis</span>
+          <span class="cap">Behavioural Economics</span><span class="cap">Urban &amp; Regional Economics</span>
+        </div>
+      </div>
+      <div>
+        <div class="svc-section-label">Experience from the team</div>
+        <div class="exp-grid">
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Designed economic growth strategy for four regions</strong> — anchored by NITI Aayog, covering macroeconomic modelling, urbanisation trends, and policy recommendations for Vision 2047</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Analysed urban expansion patterns across 3,947 towns</strong> — spatial regression analysis of India's urbanisation drivers, delivered as a policy document for Government of India planning</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Oversaw third-party assessment of 18 state government schemes</strong> — RFP design, study design review, fieldwork supervision, and report finalisation for Government of Gujarat</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Applied behavioural economics to government decision-making</strong> — designed choice experiments and practical interventions for improving public policy outcomes</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 ADVISORY -->
+<div class="svc-block s-amber" id="advisory">
+  <div class="svc-top-bar"></div>
+  <div class="svc-main">
+    <div class="svc-left">
+      <div class="svc-num">02 — Advisory</div>
+      <div class="svc-title">Institutional Advisory &amp; Decision Support</div>
+      <div class="svc-mantra">"Navigate uncertainty.<br>Stay upright while moving."</div>
+      <p class="svc-context">Once direction is set, reality intervenes. We stay with organisations through execution — not as auditors, but as thinking partners.</p>
+      <a href="/contact" class="svc-jump-link">Discuss a project</a>
+    </div>
+    <div class="svc-right">
+      <p class="svc-desc">
+        Institutional constraints, political dynamics, capacity gaps, unexpected events — these are what strategy actually has to navigate. Most advisory stops at the recommendation. <strong>We stay for the implementation: interpreting signals, adjusting course, and keeping decision quality high when it's hardest to do so.</strong>
+      </p>
+      <div>
+        <div class="svc-section-label">Capabilities</div>
+        <div class="caps-grid">
+          <span class="cap">Decision Quality</span><span class="cap">Risk Sensing</span>
+          <span class="cap">Signal Interpretation</span><span class="cap">Course Correction</span>
+          <span class="cap">Stakeholder Navigation</span><span class="cap">Pressure Testing</span>
+          <span class="cap">Institutional Diagnostics</span><span class="cap">Leadership Support</span>
+        </div>
+      </div>
+      <div>
+        <div class="svc-section-label">Experience from the team</div>
+        <div class="exp-grid">
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Sustained advisory across multiple state government ministries</strong> — supporting departmental supervision, study design guidance, and follow-up over extended engagements in Gujarat</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Guided programme strategy and M&amp;E governance</strong> for CSR foundations — working alongside NGOs and programme leadership on design decisions and course corrections</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Cross-country financial and economic advisory</strong> under high-pressure client deadlines — complex analysis requiring rapid, clear-headed judgement and confident communication</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Mentored field teams and health workers</strong> through programme design and monitoring — translating technical frameworks into operational reality on the ground</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 EVIDENCE -->
+<div class="svc-block s-teal" id="evidence">
+  <div class="svc-top-bar"></div>
+  <div class="svc-main">
+    <div class="svc-left">
+      <div class="svc-num">03 — Evidence</div>
+      <div class="svc-title">Evidence, Data &amp; Learning Systems</div>
+      <div class="svc-mantra">"Understand what's happening.<br>And why."</div>
+      <p class="svc-context">Our core engine. From CAPI systems and field operations to econometric modelling and peer-reviewed research. Rigour without theatre.</p>
+      <a href="/contact" class="svc-jump-link">Discuss a project</a>
+    </div>
+    <div class="svc-right">
+      <p class="svc-desc">
+        Most organisations don't have a data problem — they have a <em>decision-quality</em> problem. They have data that doesn't get used, surveys that don't measure the right things, and reports that sit on shelves. <strong>We design evidence systems that are built to be used — from survey design through to findings that reach the people who need them.</strong>
+      </p>
+      <div>
+        <div class="svc-section-label">Capabilities</div>
+        <div class="caps-grid">
+          <span class="cap">Survey Design &amp; Sampling</span><span class="cap">CAPI / Digital Data Collection</span>
+          <span class="cap">M&amp;E Framework Design</span><span class="cap">Quantitative Analysis</span>
+          <span class="cap">Econometric Modelling</span><span class="cap">Spatial Analysis (ArcGIS)</span>
+          <span class="cap">Baseline &amp; Endline Studies</span><span class="cap">Mixed Methods Research</span>
+          <span class="cap">Data Quality Management</span><span class="cap">Field Operations</span>
+          <span class="cap">STATA · R · Python</span><span class="cap">Learning Systems</span>
+        </div>
+      </div>
+      <div>
+        <div class="svc-section-label">Experience from the team</div>
+        <div class="exp-grid">
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Evaluated a national government innovation scheme for Ministry of Defence</strong> — led sampling design and quantitative analysis for the iDEX programme assessment</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Ran nutrition baseline across 9 blocks in Jharkhand and Odisha</strong> — end-to-end: survey design, CAPI deployment, field data quality, analysis, and reporting</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Published field research in Economic &amp; Political Weekly</strong> — quantitative and qualitative study of groundwater governance and agrarian systems in tribal areas of Gujarat and Maharashtra</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Assessed MGNREGA climate resilience across four states</strong> — Andhra Pradesh, Sikkim, Jharkhand, Odisha — field operations and data management at national scale</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Designed CAPI-based data systems for 40+ programmes</strong> — digital collection tools, data pipelines, and reporting frameworks across health, education, gender, and livelihoods</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Postdoctoral research in agricultural production economics</strong> — econometric modelling, ArcGIS spatial analysis, and peer-reviewed publications, University of Göttingen</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 KNOWLEDGE -->
+<div class="svc-block s-blue" id="knowledge">
+  <div class="svc-top-bar"></div>
+  <div class="svc-main">
+    <div class="svc-left">
+      <div class="svc-num">04 — Knowledge</div>
+      <div class="svc-title">Knowledge &amp; Influence</div>
+      <div class="svc-mantra">"Make insights<br>travel further."</div>
+      <p class="svc-context">Evidence only matters if it reaches the right people in the right form. We close the gap between findings and action.</p>
+      <a href="/contact" class="svc-jump-link">Discuss a project</a>
+    </div>
+    <div class="svc-right">
+      <p class="svc-desc">
+        A well-run study that produces a report nobody reads has failed, regardless of methodological quality. <strong>We help organisations turn research and field experience into knowledge that actually moves — informing decisions, shifting narratives, and outlasting the project it came from.</strong> From field to boardroom to policy.
+      </p>
+      <div>
+        <div class="svc-section-label">Capabilities</div>
+        <div class="caps-grid">
+          <span class="cap">Knowledge Systems</span><span class="cap">Research Synthesis</span>
+          <span class="cap">Communication Strategy</span><span class="cap">Policy Briefs</span>
+          <span class="cap">Influence Pathways</span><span class="cap">Stakeholder Communication</span>
+          <span class="cap">Data Visualisation</span><span class="cap">Report Writing</span>
+        </div>
+      </div>
+      <div>
+        <div class="svc-section-label">Experience from the team</div>
+        <div class="exp-grid">
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Published two peer-reviewed articles in Economic &amp; Political Weekly</strong> — field research translated into academic and policy-facing outputs reaching practitioners, academics, and government planners</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Produced urban growth policy document for Government of India</strong> — spatial research on 3,947 towns translated into actionable planning guidance for national urban development policy</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Authored monthly economic intelligence reports</strong> for industry and policymaker audiences — macroeconomic analysis, competitor insights, and sector-specific findings disseminated to expert readers</div></div>
+          <div class="exp-item"><div class="exp-dot"></div><div class="exp-text"><strong>Delivered decision-ready reporting across 40+ field evaluations</strong> — translating complex survey data, mixed methods findings, and statistical analysis into clear outputs for foundation and government clients</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW THEY CONNECT -->
+<section id="connect">
+  <div class="connect-ghost">FLOW</div>
+  <div class="connect-header rv">
+    <p class="connect-eyebrow">How It Works Together</p>
+    <h2 class="connect-title">None of these<br>work <em>alone.</em></h2>
+  </div>
+  <div class="connect-flow">
+    <div class="cf-card rv">
+      <div class="cf-bar" style="background:var(--burg)"></div>
+      <div class="cf-num">01 — Strategy</div>
+      <div class="cf-title">Sets the question</div>
+      <div class="cf-desc">What are we actually trying to achieve? What does good look like? What are the real trade-offs?</div>
+      <div class="cf-arrow">Grounds into <span style="color:var(--teal);margin-left:.3rem">Evidence →</span></div>
+    </div>
+    <div class="cf-card rv" style="transition-delay:.08s">
+      <div class="cf-bar" style="background:var(--teal)"></div>
+      <div class="cf-num">03 — Evidence</div>
+      <div class="cf-title">Answers it honestly</div>
+      <div class="cf-desc">What's actually happening? What does the data say — not what we hoped it would say?</div>
+      <div class="cf-arrow">Informs <span style="color:var(--amber);margin-left:.3rem">Advisory →</span></div>
+    </div>
+    <div class="cf-card rv" style="transition-delay:.16s">
+      <div class="cf-bar" style="background:var(--amber)"></div>
+      <div class="cf-num">02 — Advisory</div>
+      <div class="cf-title">Holds the course</div>
+      <div class="cf-desc">As execution gets difficult, we stay alongside — interpreting signals, adjusting direction.</div>
+      <div class="cf-arrow">Delivered via <span style="color:var(--blue);margin-left:.3rem">Knowledge →</span></div>
+    </div>
+    <div class="cf-card rv" style="transition-delay:.24s">
+      <div class="cf-bar" style="background:var(--blue)"></div>
+      <div class="cf-num">04 — Knowledge</div>
+      <div class="cf-title">Makes it last</div>
+      <div class="cf-desc">Findings reach the right people in the right form. Evidence built to be used, not filed.</div>
+      <div class="cf-arrow">Feeds back into <span style="color:var(--burg);margin-left:.3rem">Strategy →</span></div>
+    </div>
+  </div>
+  <div class="connect-cta rv">
+    <p class="cc-text"><strong>Not sure which service applies to your problem?</strong> Tell us what you're working on — we'll be honest about what would actually help.</p>
+    <div class="cc-actions">
+      <a href="/contact" class="btn-p">Talk to us →</a>
+      <a href="/work" class="btn-o">See our work</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10">
+  <div>
+    <a href="/" style="text-decoration:none;display:flex;flex-direction:column;gap:5px">
+      <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:22px;width:auto;display:block;opacity:.7">
+      <span style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)">Politely Radical</span>
+    </a>
+    <p style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-top:.85rem;max-width:210px">Research, strategy, and evidence for people building things that matter.</p>
+  </div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Navigate</div>
+    <div style="display:flex;flex-direction:column;gap:.55rem">
+      <a href="/services" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s">Services</a>
+      <a href="/work" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Our Work</a>
+      <a href="/about" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">About</a>
+      <a href="/people" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">People</a>
+      <a href="/contact" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Contact</a>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Find Us</div>
+    <div style="display:flex;flex-direction:column;gap:.55rem">
+      <a href="mailto:contact@mwrcollective.com" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">contact@mwrcollective.com</a>
+      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">LinkedIn</a>
+      <span style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
+    </div>
+  </div>
+</footer>
+<div style="border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:var(--ink);position:relative;z-index:10">
+  <span style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.16)">© 2026 Mindworld Research Private Limited</span>
+  <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1)">New Delhi · India</span>
+</div>
+
+</main>
+
+<div id="bbar">
+  <div class="bb-l">
+    <div class="bb-i"><div class="bb-d" style="background:var(--burg)"></div>Services</div>
+    <div class="bb-i"><div class="bb-d" style="background:var(--teal)"></div>Four Pillars</div>
+  </div>
+  <div class="bb-r">Politely Radical — MWR Collective 2026</div>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),crr=document.getElementById('crr');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,rx=mx,ry=my;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function t(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.07;ry+=(my-ry)*.07;
+  cur.style.left=cx+'px';cur.style.top=cy+'px';
+  crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(t)})();
+document.querySelectorAll('a,button,.ph-jump,.exp-item,.cf-card,.cap').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.svc-block').forEach(el=>io.observe(el));
+</script>
+<script>
+// ── PLASMA SYSTEM (inline, no external dep needed) ──
+(function(){
+  function hexRGB(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  const orbs=[
+    {c:"#C8203A",xf:.18,yf:.22,xp:0,  yp:0.8,xa:.38,ya:.32,xc:.20,yc:.25,r:520,a:.62},
+    {c:"#8B1525",xf:.10,yf:.14,xp:2.3,yp:1.2,xa:.28,ya:.36,xc:.15,yc:.55,r:440,a:.48},
+    {c:"#D4823E",xf:.14,yf:.09,xp:1.1,yp:2.5,xa:.34,ya:.26,xc:.75,yc:.20,r:480,a:.48},
+    {c:"#1B7A65",xf:.16,yf:.20,xp:2.8,yp:0.5,xa:.30,ya:.36,xc:.80,yc:.65,r:500,a:.48},
+    {c:"#2058A8",xf:.20,yf:.15,xp:2.2,yp:1.6,xa:.32,ya:.34,xc:.50,yc:.15,r:460,a:.42},
+    {c:"#6B3FA0",xf:.12,yf:.18,xp:3.5,yp:0.9,xa:.28,ya:.30,xc:.85,yc:.42,r:400,a:.35},
+    {c:"#C8203A",xf:.22,yf:.12,xp:0.7,yp:3.2,xa:.24,ya:.40,xc:.45,yc:.85,r:380,a:.32},
+    {c:"#1B7A65",xf:.09,yf:.16,xp:1.9,yp:2.1,xa:.36,ya:.28,xc:.25,yc:.78,r:420,a:.35},
+  ];
+  const canvas=document.getElementById("plasma");
+  const ctx=canvas.getContext("2d");
+  let W,H,t=0,pmx=.5,pmy=.5;
+  const RGB=orbs.map(o=>hexRGB(o.c));
+  function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+  resize();window.addEventListener("resize",resize);
+  window.addEventListener("mousemove",e=>{pmx=e.clientX/W;pmy=e.clientY/H});
+  function draw(){
+    ctx.fillStyle="#0A0908";ctx.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation="screen";
+    orbs.forEach((orb,i)=>{
+      let x=(orb.xc+Math.sin(t*orb.xf+orb.xp)*orb.xa)*W;
+      let y=(orb.yc+Math.cos(t*orb.yf+orb.yp)*orb.ya)*H;
+      x+=(pmx*W-x)*.018;y+=(pmy*H-y)*.018;
+      const r=orb.r*(0.82+Math.sin(t*orb.xf*1.7+i*.8)*.18);
+      const a=orb.a*0.45*(0.78+Math.sin(t*orb.yf*1.3+i*1.2)*.22);
+      const grad=ctx.createRadialGradient(x,y,0,x,y,r);
+      const[R,G,B]=RGB[i];
+      grad.addColorStop(0,`rgba(${R},${G},${B},${a})`);
+      grad.addColorStop(0.3,`rgba(${R},${G},${B},${a*.65})`);
+      grad.addColorStop(0.6,`rgba(${R},${G},${B},${a*.25})`);
+      grad.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+    });
+    for(let i=0;i<5;i++){
+      const ly=H*(Math.abs(Math.sin(t*.07+i*1.37+i*.41))%1);
+      const a=(0.035+Math.sin(t*.4+i*1.9)*.015)*0.45;
+      const hw=100+Math.sin(t*.12+i)*65;
+      const lx=W*(Math.abs(Math.sin(t*.04+i*2.6))%1);
+      const[R,G,B]=RGB[i%RGB.length];
+      const lg=ctx.createLinearGradient(lx-hw,ly,lx+hw,ly);
+      lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
+      lg.addColorStop(.5,`rgba(${R},${G},${B},${a})`);
+      lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1,hw*2,2);
+    }
+    ctx.globalCompositeOperation="source-over";
+    t+=.005;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<style>
+@media(max-width:768px){
+  html{font-size:15px}body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.25rem}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
+  #bbar{padding:0 1.25rem}
+  .bb-r{display:none}
+  #page-hero{padding:calc(52px + 3rem) 1.25rem 3rem;grid-template-columns:1fr;gap:2rem}
+  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
+  .ph-ghost{display:none}
+}
+</style>
+
+
+<style>
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:768px){
+  html{font-size:15px}
+  body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.25rem}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
+  #bbar{padding:0 1.25rem}
+  .bb-r{display:none}
+
+  /* Page heroes */
+  #page-hero{
+    padding:calc(52px + 3rem) 1.25rem 3rem;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
+  .ph-ghost{display:none}
+  .ph-jumps{grid-template-columns:1fr 1fr}
+
+  /* Services */
+  #approach{grid-template-columns:1fr;padding:2.5rem 1.25rem}
+  .approach-text{font-size:1.1rem}
+  .svc-main{grid-template-columns:1fr}
+  .svc-left{
+    position:relative;top:auto;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:2rem 1.25rem
+  }
+  .svc-right{padding:2rem 1.25rem}
+  .connect-flow{grid-template-columns:1fr 1fr}
+  #connect{padding:4rem 1.25rem}
+  .connect-header{margin-bottom:2rem}
+  .connect-cta{flex-direction:column;gap:1.5rem;padding:2rem 1.25rem}
+  .cc-actions{width:100%;flex-direction:column}
+  .cc-actions .btn-p,.cc-actions .btn-o{width:100%;justify-content:center}
+
+  /* Work */
+  .sector-header{
+    grid-template-columns:40px 1fr auto;
+    padding:1.5rem 1.25rem;
+    gap:.85rem
+  }
+  .sh-tagline{display:none}
+  .sector-body-content{
+    grid-template-columns:1fr;
+    padding:1.5rem 1.25rem 2.5rem
+  }
+  #work-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .wc-right{flex-direction:column;width:100%}
+  .wc-right .btn-p,.wc-right .btn-o{width:100%;justify-content:center}
+  #sectors-note{flex-direction:column;padding:1.5rem 1.25rem;gap:.75rem}
+
+  /* About */
+  #manifesto{
+    grid-template-columns:1fr;
+    padding:4rem 1.25rem;
+    gap:3rem
+  }
+  .mf-headline{font-size:clamp(1.8rem,8vw,2.6rem)}
+  #name-section{
+    grid-template-columns:1fr;
+    padding:2.5rem 1.25rem;
+    gap:1rem
+  }
+  #approach-grid{padding:4rem 1.25rem}
+  .ag-grid{grid-template-columns:1fr 1fr}
+  #about-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .ac-right{flex-direction:column;width:100%}
+  .ac-right .btn-p,.ac-right .btn-o{width:100%;justify-content:center}
+  #page-hero .ph-inner{grid-template-columns:1fr;gap:2rem}
+
+  /* People */
+  .person-card{grid-template-columns:1fr}
+  .pc-left{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:2rem 1.25rem
+  }
+  .pc-right{padding:2rem 1.25rem}
+  #people-cta{
+    grid-template-columns:1fr;
+    padding:3.5rem 1.25rem;
+    gap:2rem
+  }
+  .pct-right{flex-direction:column;width:100%}
+  .pct-right .btn-p,.pct-right .btn-o{width:100%;justify-content:center}
+
+  /* Contact */
+  main[style*="grid-template-columns:1fr 1fr"],
+  main{grid-template-columns:1fr !important}
+  .ct-left{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    padding:4rem 1.25rem 3rem
+  }
+  .ct-right{padding:3rem 1.25rem 4rem}
+  .ct-headline{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .form-row{grid-template-columns:1fr}
+}
+
+@media(min-width:769px) and (max-width:1024px){
+  nav,#bbar{padding-left:2rem;padding-right:2rem}
+  #page-hero{padding-left:2rem;padding-right:2rem}
+  .svc-main{grid-template-columns:220px 1fr}
+  .person-card{grid-template-columns:260px 1fr}
+  .sector-body-content{grid-template-columns:1fr}
+  #manifesto{padding:5rem 2rem;gap:3rem}
+  .connect-flow{grid-template-columns:1fr 1fr}
+}
+</style>
+
+</body>
+</html>
