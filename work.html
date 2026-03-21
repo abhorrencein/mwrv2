@@ -8,597 +8,341 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:17px;scroll-behavior:smooth}
-body{background:#0A0908;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden}
+body{background:#13100F;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden}
 :root{
-  --ink:#0A0908;--paper:#F7F5F0;--paper2:#E8E4DB;
+  --ink:#13100F;--paper:#F7F5F0;--paper2:#E8E4DB;
   --burg:#C8203A;--burg-d:#8B1525;
   --amber:#D4823E;--teal:#1B7A65;--blue:#2058A8;--violet:#6B3FA0;
   --f-d:'Syne',sans-serif;--f-m:'DM Mono',monospace;
   --ease-out:cubic-bezier(0.22,1,0.36,1);
 }
-
 #cur{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:white;mix-blend-mode:difference}
-#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,0.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
+#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
 body.hov #crr{width:54px;height:54px;opacity:.1}
-
+.mwr-logo{height:26px;width:auto;max-width:130px;object-fit:contain;display:block;image-rendering:crisp-edges}
 #plasma{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
-.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
-.nav-logo{font-family:var(--f-d);font-size:1.15rem;font-weight:800;letter-spacing:.05em;color:white;line-height:1}
-.nav-logo em{color:var(--burg);font-style:normal}
-.nav-tag{font-family:var(--f-m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
-.nav-r{display:flex;align-items:center;gap:2rem}
+main{position:relative;z-index:10}
+nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(19,16,15,.82);backdrop-filter:blur(18px)}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:3px}
+.nav-tag{font-family:var(--f-m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
+.nav-r{display:flex;align-items:center;gap:1.75rem}
 .nav-link{font-family:var(--f-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.42);transition:color .2s}
 .nav-link:hover,.nav-link.active{color:white}
 .nav-cta{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.38rem 1rem;border:1px solid var(--burg);color:var(--burg);transition:all .2s}
 .nav-cta:hover{background:var(--burg);color:white}
-
-#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,.07);background:rgba(19,16,15,.82);backdrop-filter:blur(18px)}
 .bb-l{display:flex;gap:1.75rem}
-.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:.42rem}
+.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:.42rem}
 .bb-d{width:5px;height:5px;border-radius:50%}
-.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.13)}
-
-main{position:relative;z-index:10}
-
-/* ── PAGE HERO ── */
-#page-hero{
-  padding:calc(52px + 5rem) 3.2rem 5rem;
-  border-bottom:1px solid rgba(255,255,255,0.07);
-  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;
-  position:relative;overflow:hidden;
-}
-.ph-ghost{
-  position:absolute;right:-1rem;top:50%;transform:translateY(-50%);
-  font-family:var(--f-d);font-size:28vw;font-weight:800;
-  color:rgba(255,255,255,0.022);line-height:1;letter-spacing:-.06em;
-  pointer-events:none;user-select:none;
-}
-.ph-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:.7rem;margin-bottom:1.25rem}
-.ph-eyebrow::before{content:'';width:20px;height:1px;background:var(--teal);display:inline-block}
-.ph-title{font-family:var(--f-d);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;line-height:.9;letter-spacing:-.045em;color:white}
-.ph-title em{color:var(--teal);font-style:normal}
-.ph-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.88;align-self:end}
-.ph-intro strong{font-weight:500;color:rgba(255,255,255,.75)}
-
-/* ── SECTORS NOTE ── */
-#sectors-note{
-  padding:2.25rem 3.2rem;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.018);
-  display:flex;align-items:center;justify-content:space-between;gap:3rem;
-}
-.sn-text{font-size:.92rem;font-weight:300;color:rgba(255,255,255,.38);line-height:1.65;max-width:680px}
-.sn-text strong{font-weight:500;color:rgba(255,255,255,.65)}
-.sn-label{font-family:var(--f-m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);flex-shrink:0}
-
-/* ══════════════════════════════════════
-   SECTOR ACCORDION ROWS
-   ══════════════════════════════════════ */
-.sector-rows{border-top:1px solid rgba(255,255,255,.06)}
-
-.sector-row{
-  border-bottom:1px solid rgba(255,255,255,.06);
-  position:relative;overflow:hidden;
-  opacity:0;transform:translateY(12px);
-  transition:opacity .6s var(--ease-out),transform .6s var(--ease-out);
-}
-.sector-row.vis{opacity:1;transform:translateY(0)}
-
-/* colour identity */
-.sector-row.s0{--sc:var(--burg);--scr:200,32,58}
-.sector-row.s1{--sc:var(--amber);--scr:212,130,62}
-.sector-row.s2{--sc:var(--violet);--scr:107,63,160}
-.sector-row.s3{--sc:var(--teal);--scr:27,122,101}
-.sector-row.s4{--sc:var(--blue);--scr:32,88,168}
-.sector-row.s5{--sc:#2D9E8A;--scr:45,158,138}
-
-/* HEADER — always visible */
-.sector-header{
-  display:grid;
-  grid-template-columns:72px 1fr auto auto;
-  align-items:center;gap:2rem;
-  padding:2rem 3.2rem;
-  cursor:none;
-  transition:background .2s;
-  position:relative;z-index:2;
-}
-.sector-header:hover{background:rgba(255,255,255,.03)}
-.sector-row.open .sector-header{background:rgba(255,255,255,.025)}
-
-/* left colour bar that fills on open */
-.sector-header::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--sc);
-  transform:scaleY(0);transform-origin:center;
-  transition:transform .4s var(--ease-out);
-}
-.sector-row.open .sector-header::before,
-.sector-header:hover::before{transform:scaleY(1)}
-
-.sh-num{
-  font-family:var(--f-m);font-size:.58rem;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(255,255,255,.28);
-}
-.sh-name{
-  font-family:var(--f-d);font-size:clamp(1.2rem,2vw,1.75rem);
-  font-weight:800;color:rgba(255,255,255,.88);letter-spacing:-.025em;
-  line-height:1;transition:color .2s;
-}
-.sector-row.open .sh-name,.sector-header:hover .sh-name{color:white}
-.sh-tagline{
-  font-size:.88rem;font-weight:300;color:rgba(255,255,255,.32);
-  transition:color .2s;
-}
-.sector-header:hover .sh-tagline,.sector-row.open .sh-tagline{color:rgba(255,255,255,.52)}
-
-.sh-toggle{
-  width:36px;height:36px;border:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;color:rgba(255,255,255,.3);
-  transition:all .3s var(--ease-out);flex-shrink:0;
-}
-.sector-row.open .sh-toggle{
-  background:rgba(var(--scr),.12);
-  border-color:rgba(var(--scr),.35);
-  color:var(--sc);
-  transform:rotate(45deg);
-}
-
-/* BODY — expands on click */
-.sector-body{
-  display:grid;
-  grid-template-rows:0fr;
-  transition:grid-template-rows .5s var(--ease-out);
-}
-.sector-row.open .sector-body{grid-template-rows:1fr}
-.sector-body-inner{overflow:hidden}
-.sector-body-content{
-  padding:0 3.2rem 3rem 3.2rem;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3.5rem;
-  border-top:1px solid rgba(255,255,255,.05);
-  padding-top:2.5rem;
-}
-
-/* Left: description + sample work */
-.sb-left{}
-.sb-desc{
-  font-size:1rem;font-weight:300;color:rgba(255,255,255,.48);
-  line-height:1.88;margin-bottom:2rem;max-width:480px;
-}
-.sb-desc strong{font-weight:500;color:rgba(255,255,255,.78)}
-
-.sb-section-label{
-  font-family:var(--f-m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.22);margin-bottom:.85rem;
-}
-.sb-work-list{display:flex;flex-direction:column;gap:.4rem}
-.sb-work-item{
-  display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;
-  padding:.75rem .9rem;
-  border:1px solid rgba(255,255,255,.05);
-  background:rgba(255,255,255,.018);
-  font-size:.88rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.6;
-  transition:border-color .2s,background .2s;
-}
-.sb-work-item:hover{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.035)}
-.sb-work-dot{width:5px;height:5px;border-radius:50%;background:var(--sc);flex-shrink:0;margin-top:.45rem;opacity:.8}
-.sb-work-item strong{font-weight:500;color:rgba(255,255,255,.72)}
-
-/* Right: services applied + org types */
-.sb-right{}
-.sb-services{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2.25rem}
-.sb-svc-tag{
-  font-family:var(--f-m);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;
-  padding:.3rem .8rem;border:1px solid;
-  transition:all .2s;
-}
-.sb-svc-tag.burg{color:var(--burg);border-color:rgba(200,32,58,.3);background:rgba(200,32,58,.06)}
-.sb-svc-tag.amber{color:var(--amber);border-color:rgba(212,130,62,.3);background:rgba(212,130,62,.06)}
-.sb-svc-tag.teal{color:var(--teal);border-color:rgba(27,122,101,.3);background:rgba(27,122,101,.06)}
-.sb-svc-tag.blue{color:var(--blue);border-color:rgba(32,88,168,.3);background:rgba(32,88,168,.06)}
-
-.sb-orgs{display:flex;flex-direction:column;gap:.35rem}
-.sb-org{
-  font-family:var(--f-m);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:.3rem .8rem;border:1px solid rgba(255,255,255,.07);
-  color:rgba(255,255,255,.38);background:rgba(255,255,255,.025);
-  display:inline-block;align-self:flex-start;
-}
-
-/* ── CTA STRIP ── */
-#work-cta{
-  padding:5rem 3.2rem;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;
-}
-.wc-left{}
-.wc-eyebrow{font-family:var(--f-m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
-.wc-eyebrow::before{content:'';width:20px;height:1px;background:var(--teal);display:inline-block}
-.wc-title{font-family:var(--f-d);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:white}
-.wc-title em{color:var(--teal);font-style:normal}
-.wc-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;margin-top:.85rem;max-width:480px}
-.wc-right{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;flex-shrink:0}
-.btn-p{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;background:var(--burg);color:white;border:1px solid var(--burg);transition:background .2s;display:inline-flex;align-items:center;gap:.4rem}
-.btn-p:hover{background:var(--burg-d)}
-.btn-o{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.16);transition:all .2s}
-.btn-o:hover{color:white;border-color:rgba(255,255,255,.42)}
-
+.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.15)}
+footer{background:#13100F;border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10}
+.ft-logo{margin-bottom:.35rem}
+.ft-tag{font-family:var(--f-m);font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg);display:block;margin-bottom:.85rem}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.3);line-height:1.7;max-width:210px}
+.ft-col-label{font-family:var(--f-m);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.ft-links{display:flex;flex-direction:column;gap:.55rem}
+.ft-link{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
+.ft-link:hover{color:white}
+.ft-copy{border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:#13100F;position:relative;z-index:10}
+.ft-copy-l{font-family:var(--f-m);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.ft-copy-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.12)}
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .rv.vis{opacity:1;transform:translateY(0)}
-
-/* Logo image fixes */
-.nav-brand img { display:block; height:30px; width:auto; }
-.nav-brand { gap:4px; }
-
+.btn-p{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;background:var(--burg);color:white;border:1px solid var(--burg);transition:background .2s;display:inline-flex;align-items:center;gap:.4rem;cursor:none}
+.btn-p:hover{background:var(--burg-d)}
+.btn-o{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.18);transition:all .2s;cursor:none}
+.btn-o:hover{color:white;border-color:rgba(255,255,255,.45)}
+/* PAGE HERO */
+.page-hero{padding:calc(52px + 5rem) 3.2rem 4.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;position:relative;overflow:hidden}
+.ph-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--f-d);font-size:28vw;font-weight:800;color:rgba(255,255,255,.022);line-height:1;letter-spacing:-.06em;pointer-events:none;user-select:none}
+.ph-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.7rem;margin-bottom:1.25rem}
+.ph-eyebrow::before{content:'';width:20px;height:1px;background:currentColor;display:inline-block}
+.ph-title{font-family:var(--f-d);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;line-height:.9;letter-spacing:-.045em;color:white}
+.ph-title em{font-style:normal}
+.ph-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.88}
+.ph-intro strong{font-weight:500;color:rgba(255,255,255,.82)}
+/* SHARED MOBILE */
+@media(max-width:768px){
+  html{font-size:15px}body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.2rem;height:56px}
+  .mwr-logo{height:22px!important}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.56rem;padding:.3rem .7rem}
+  #bbar{padding:0 1.2rem}
+  .bb-i:nth-child(n+2){display:none}
+  .bb-r{display:none}
+  .page-hero{padding:calc(56px + 2.5rem) 1.2rem 2.5rem;grid-template-columns:1fr;gap:1.5rem}
+  .ph-title{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .ph-ghost{display:none}
+  footer{grid-template-columns:1fr;padding:2rem 1.2rem;gap:1.75rem}
+  .ft-copy{padding:1.2rem;flex-direction:column;gap:.4rem}
+  .btn-p,.btn-o{width:100%;justify-content:center}
+}
+@media(min-width:769px) and (max-width:1100px){
+  nav,#bbar{padding-left:2rem;padding-right:2rem}
+  .page-hero,footer,.ft-copy{padding-left:2rem;padding-right:2rem}
+}
+/* NOTE STRIP */
+#sectors-note{padding:2rem 3.2rem;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.sn-text{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.65;max-width:680px}
+.sn-text strong{font-weight:500;color:rgba(255,255,255,.65)}
+.sn-label{font-family:var(--f-m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);flex-shrink:0}
+/* SECTOR ACCORDION */
+.sector-rows{border-top:1px solid rgba(255,255,255,.07)}
+.sector-row{border-bottom:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.sector-row.vis{opacity:1;transform:translateY(0)}
+.sector-row.s0{--sc:var(--burg)}.sector-row.s1{--sc:var(--amber)}.sector-row.s2{--sc:var(--violet)}.sector-row.s3{--sc:var(--teal)}.sector-row.s4{--sc:var(--blue)}.sector-row.s5{--sc:var(--teal)}
+.sector-header{display:grid;grid-template-columns:64px 1fr auto auto;align-items:center;gap:2rem;padding:2rem 3.2rem;cursor:pointer;transition:background .2s;position:relative;z-index:2}
+.sector-header:hover,.sector-row.open .sector-header{background:rgba(255,255,255,.025)}
+.sector-header::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sc);transform:scaleY(0);transform-origin:center;transition:transform .4s var(--ease-out)}
+.sector-row.open .sector-header::before,.sector-header:hover::before{transform:scaleY(1)}
+.sh-num{font-family:var(--f-m);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.sh-name{font-family:var(--f-d);font-size:clamp(1.2rem,2vw,1.65rem);font-weight:800;color:rgba(255,255,255,.88);letter-spacing:-.025em;line-height:1;transition:color .2s}
+.sector-row.open .sh-name,.sector-header:hover .sh-name{color:white}
+.sh-tagline{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.38);margin-top:.25rem;transition:color .2s}
+.sector-header:hover .sh-tagline,.sector-row.open .sh-tagline{color:rgba(255,255,255,.58)}
+.sh-toggle{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:rgba(255,255,255,.35);transition:all .3s var(--ease-out)}
+.sector-row.open .sh-toggle{border-color:rgba(255,255,255,.3);color:white;transform:rotate(45deg)}
+.sector-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease-out)}
+.sector-row.open .sector-body{grid-template-rows:1fr}
+.sector-body-inner{overflow:hidden}
+.sector-body-content{padding:0 3.2rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;border-top:1px solid rgba(255,255,255,.06);padding-top:2.5rem}
+.sb-desc{font-size:1rem;font-weight:300;color:rgba(255,255,255,.52);line-height:1.9;max-width:480px}
+.sb-desc strong{font-weight:500;color:rgba(255,255,255,.82)}
+.svc-section-label{font-family:var(--f-m);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.85rem}
+.exp-grid{display:flex;flex-direction:column;gap:.4rem}
+.exp-item{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;padding:.85rem 1rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.48);line-height:1.6;transition:all .2s}
+.exp-item:hover{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.042)}
+.exp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:.42rem;opacity:.8}
+.exp-text{font-size:.88rem;color:rgba(255,255,255,.48)}
+.exp-text strong{font-weight:500;color:rgba(255,255,255,.78)}
+.sb-services{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.75rem}
+.sb-svc-tag{font-family:var(--f-m);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid}
+.sb-svc-tag.burg{color:var(--burg);border-color:rgba(200,32,58,.35);background:rgba(200,32,58,.07)}
+.sb-svc-tag.amber{color:var(--amber);border-color:rgba(212,130,62,.35);background:rgba(212,130,62,.07)}
+.sb-svc-tag.teal{color:var(--teal);border-color:rgba(27,122,101,.35);background:rgba(27,122,101,.07)}
+.sb-svc-tag.blue{color:var(--blue);border-color:rgba(32,88,168,.35);background:rgba(32,88,168,.07)}
+.sb-orgs{display:flex;flex-direction:column;gap:.35rem}
+.sb-org{font-family:var(--f-m);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);background:rgba(255,255,255,.03)}
+/* CTA */
+#work-cta{padding:5rem 3.2rem;border-top:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.wc-title{font-family:var(--f-d);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:white}
+.wc-title em{color:var(--teal);font-style:normal}
+.wc-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.75;margin-top:.85rem;max-width:480px}
+.wc-right{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;flex-shrink:0}
+@media(max-width:768px){
+  .sector-header{grid-template-columns:40px 1fr auto;padding:1.25rem 1.2rem;gap:.75rem}
+  .sh-tagline{display:none}
+  .sector-body-content{grid-template-columns:1fr;padding:1.5rem 1.2rem 2rem;gap:2rem}
+  #work-cta{grid-template-columns:1fr;padding:3.5rem 1.2rem;gap:2rem}
+  .wc-right{align-items:flex-start}
+  #sectors-note{flex-direction:column;padding:1.5rem 1.2rem;gap:.75rem}
+}
+@media(min-width:769px) and (max-width:1100px){
+  .sector-body-content{grid-template-columns:1fr}
+  #work-cta,#sectors-note{padding-left:2rem;padding-right:2rem}
+}
 </style>
 </head>
 <body>
-<div id="cur"></div>
-<div id="crr"></div>
+<div id="cur"></div><div id="crr"></div>
 <canvas id="plasma"></canvas>
-
 <nav>
-  <a href="/index.html" class="nav-brand">
-    <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:28px;width:auto;display:block">
+  <a href="index.html" class="nav-brand">
+    <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" class="mwr-logo">
     <span class="nav-tag">Politely Radical</span>
   </a>
   <div class="nav-r">
-    <a href="/services.html" class="nav-link">Services</a>
-    <a href="/work.html" class="nav-link active">Our Work</a>
-    <a href="/about.html" class="nav-link">About</a>
-    <a href="/people.html" class="nav-link">People</a>
-    <a href="/contact.html" class="nav-cta">Work With Us</a>
+    <a href="services.html" class="nav-link ">Services</a>
+    <a href="work.html" class="nav-link active">Our Work</a>
+    <a href="about.html" class="nav-link ">About</a>
+    <a href="people.html" class="nav-link ">People</a>
+    <a href="contact.html" class="nav-cta ">Work With Us</a>
   </div>
 </nav>
-
 <main>
-
-<div id="page-hero">
+<div class="page-hero">
   <div class="ph-ghost">06</div>
   <div class="rv">
-    <p class="ph-eyebrow">Where We Work</p>
-    <h1 class="ph-title">Six sectors.<br><em>Real work.</em></h1>
+    <p class="ph-eyebrow" style="color:var(--teal)">Where We Work</p>
+    <h1 class="ph-title">Six sectors.<br><em style="color:var(--teal)">Real work.</em></h1>
   </div>
-  <p class="ph-intro rv" style="transition-delay:.1s">
-    <strong>Deep presence, not surface-level generalism.</strong> Our team has built genuine knowledge in six areas over years of field research, policy analysis, and programme evaluation. Click any sector to see what that means in practice.
-  </p>
+  <p class="ph-intro rv" style="transition-delay:.1s"><strong>Deep presence, not surface-level generalism.</strong> Our team has worked deeply in six areas through field research, programme evaluation, and policy analysis. Click any sector to see what that means in practice.</p>
 </div>
-
 <div id="sectors-note" class="rv">
-  <p class="sn-text">The work below reflects <strong>experience our team brings to MWR</strong> — built across previous engagements and institutions. We're honest about what we've done and where.</p>
+  <p class="sn-text">This reflects <strong>experience our team has built across previous roles and institutions</strong> — not work contracted under MWR.</p>
   <span class="sn-label">About this page</span>
 </div>
-
 <div class="sector-rows" id="sector-rows">
 
-  <!-- 01 HEALTH -->
-  <div class="sector-row s0" data-idx="0">
-    <div class="sector-header" onclick="toggleRow(0)">
-      <span class="sh-num">01</span>
-      <div>
-        <div class="sh-name">Public Health &amp; Nutrition</div>
-        <div class="sh-tagline">Access, quality, and equity at the scale that matters</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
-    </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Health programmes fail not because of a lack of intent but because of a lack of <strong>credible evidence</strong> about what's actually working. Our team has designed and run studies across nutrition, maternal health, NCDs, and adolescent wellbeing — with rigour built for decision-making, not just reporting.</p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Nutrition baseline across 9 blocks</strong> in Jharkhand and Odisha — survey design, CAPI deployment, data quality, reporting</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>NCD tracking programme evaluation</strong> — community landscape study on non-communicable diseases, Alwar, Rajasthan</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Maternal and child health baseline</strong> — RMNCH+A strategy study across low-resource settings, Odisha</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Mobile Medical Unit baseline</strong> — quantitative study, field operations, and monitoring, Uttar Pradesh</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Parent coaching endline</strong> — first 1,000 days programme assessment, Delhi and Bahraich UP</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Mass Drug Administration study</strong> — mixed methods research to improve MDA outcomes, Uttar Pradesh</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag amber">Advisory</span>
-              <span class="sb-svc-tag blue">Knowledge &amp; Comms</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">UN Agencies</span>
-              <span class="sb-org">International Health Foundations</span>
-              <span class="sb-org">Corporate CSR Programmes</span>
-              <span class="sb-org">Development Finance Institutions</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="sector-row" data-idx="0">
+  <div class="sector-header" onclick="toggleRow(0)">
+    <span class="sh-num">01</span>
+    <div><div class="sh-name">Public Health &amp; Nutrition</div><div class="sh-tagline">Access, quality, and equity at the scale that matters.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
   </div>
-
-  <!-- 02 AGRICULTURE -->
-  <div class="sector-row s1" data-idx="1">
-    <div class="sector-header" onclick="toggleRow(1)">
-      <span class="sh-num">02</span>
-      <div>
-        <div class="sh-name">Agriculture &amp; Food Systems</div>
-        <div class="sh-tagline">Markets, resilience, and rural livelihoods under pressure</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Health programmes fail not because of lack of intent — but because of a lack of credible evidence about what's actually working. Our team has designed and run studies across nutrition, maternal health, NCDs, and adolescent wellbeing.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--burg)"></div><div class="exp-text"><strong>Nutrition baseline across 9 blocks in Jharkhand and Odisha</strong> — survey design, CAPI deployment, data quality, and reporting</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--burg)"></div><div class="exp-text"><strong>NCD tracking programme evaluation</strong> — community landscape study on non-communicable diseases, Alwar, Rajasthan</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--burg)"></div><div class="exp-text"><strong>Maternal and child health baseline</strong> — RMNCH+A strategy study across low-resource settings, Odisha</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--burg)"></div><div class="exp-text"><strong>Mobile Medical Unit baseline</strong> — quantitative study, field operations and monitoring, Uttar Pradesh</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--burg)"></div><div class="exp-text"><strong>Mass Drug Administration study</strong> — mixed methods research to improve MDA outcomes, Uttar Pradesh</div></div></div>
     </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Rural India's agricultural systems are under simultaneous pressure from climate, markets, and policy. Our team brings <strong>both quantitative field research and academic econometric depth</strong> — including peer-reviewed publications on agrarian systems and groundwater governance.</p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Rural transformation impact study</strong> — grants evaluation for rural development, Maharashtra and Gujarat</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>CSR programme evaluation</strong> — agricultural livelihoods and community development assessment</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Water and sanitation credit study</strong> in FPOs across 6 states — Tamil Nadu, Maharashtra, UP, West Bengal, Rajasthan, Gujarat</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Lead farmer platform evaluation</strong> — season-end study, Samastipur district, Bihar</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Peer-reviewed field research</strong> on groundwater governance and agrarian dynamism — published in Economic &amp; Political Weekly</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag burg">Strategy</span>
-              <span class="sb-svc-tag blue">Knowledge &amp; Comms</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">Corporate Foundations</span>
-              <span class="sb-org">International Development Organisations</span>
-              <span class="sb-org">Academic &amp; Research Institutions</span>
-              <span class="sb-org">Water &amp; Sanitation Finance</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag amber">Advisory</span><span class="sb-svc-tag blue">Knowledge &amp; Comms</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">UN Agencies</span><span class="sb-org">International Health Foundations</span><span class="sb-org">Corporate CSR Programmes</span><span class="sb-org">Development Finance Institutions</span></div>
     </div>
-  </div>
-
-  <!-- 03 EDUCATION -->
-  <div class="sector-row s2" data-idx="2">
-    <div class="sector-header" onclick="toggleRow(2)">
-      <span class="sh-num">03</span>
-      <div>
-        <div class="sh-name">Education, Skilling &amp; Livelihoods</div>
-        <div class="sh-tagline">From learning systems to meaningful work</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
-    </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Education interventions are only as strong as their evidence base. Our team has assessed school-level innovation, early childhood development, skilling infrastructure, and youth engagement — <strong>with methods that actually measure learning outcomes, not just activity outputs.</strong></p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Atal Tinkering Labs national assessment</strong> — evaluation design, data tools, and reporting for NITI Aayog</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>State Skill Index development</strong> — knowledge partner for UNICEF India, data systems and monitoring</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>ITI grading across 6 states</strong> — Phase 2 grading of Industrial Training Institutes, Ministry of Skill Development</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Early learning programme assessment</strong> — baseline study, Maharashtra</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Youth engagement mapping</strong> — analysis of government and private sector initiatives, CTSI</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Comprehensive school education assessment</strong> — primary through secondary including Mid-Day Meal, Madhya Pradesh government</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag burg">Strategy</span>
-              <span class="sb-svc-tag amber">Advisory</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">Government of India Programmes</span>
-              <span class="sb-org">UN Agencies</span>
-              <span class="sb-org">State Governments</span>
-              <span class="sb-org">Philanthropic Foundations</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 04 GENDER -->
-  <div class="sector-row s3" data-idx="3">
-    <div class="sector-header" onclick="toggleRow(3)">
-      <span class="sh-num">04</span>
-      <div>
-        <div class="sh-name">Gender &amp; Social Norms</div>
-        <div class="sh-tagline">Behaviour, power, and norms — in practice, not theory</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
-    </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Gender work that doesn't measure norms doesn't measure the right thing. Our team has designed and run studies specifically focused on <strong>how social norms shift, who they affect, and what evidence-led change actually looks like</strong> — not just counting female beneficiaries.</p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Second Chance Education endline</strong> — vocational learning programme for women, UN Women India</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Concurrent evaluation of Taaron ki Toli</strong> — adolescent girls programme, quantitative tools and field monitoring</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Nanhi Kali impact evaluation</strong> — CSR programme for girl child education, Uttar Pradesh</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Menstrual health baseline</strong> — MHM programme design and data collection tools</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Gender and violence needs assessment</strong> — minority women across Rajasthan, Haryana, and Madhya Pradesh, UN Women</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>UNFPA adolescent girls endline</strong> — Sammridhhi project evaluation, Madhya Pradesh</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag amber">Advisory</span>
-              <span class="sb-svc-tag blue">Knowledge &amp; Comms</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">UN Agencies</span>
-              <span class="sb-org">International NGOs</span>
-              <span class="sb-org">Corporate CSR</span>
-              <span class="sb-org">Civil Society Organisations</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 05 GOVERNANCE -->
-  <div class="sector-row s4" data-idx="4">
-    <div class="sector-header" onclick="toggleRow(4)">
-      <span class="sh-num">05</span>
-      <div>
-        <div class="sh-name">Governance, Policy &amp; Markets</div>
-        <div class="sh-tagline">Institutions, incentives, and delivery that holds</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
-    </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Policy work that doesn't understand implementation is just theory. Our team brings <strong>macroeconomic analysis, institutional diagnostic capability, and the practical experience of advising government bodies</strong> — from state departments to central ministries.</p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Growth Hubs economic strategy</strong> — four regions anchored by NITI Aayog, macroeconomic modelling for Vision 2047</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>iDEX scheme evaluation</strong> — independent assessment of Defence Innovation Excellence for Ministry of Defence</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>18 state government scheme assessments</strong> — RFP design, third-party oversight, and report finalisation, Government of Gujarat</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Urban expansion research</strong> — analysis of 3,947 towns, spatial regression, policy document for GoI urban planning</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Metro rail census and stakeholder consultations</strong> — socio-economic survey for Kanpur Metro Rail project</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag burg">Strategy</span>
-              <span class="sb-svc-tag amber">Advisory</span>
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag blue">Knowledge &amp; Comms</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">Government of India Bodies</span>
-              <span class="sb-org">State Governments</span>
-              <span class="sb-org">International Policy Institutes</span>
-              <span class="sb-org">Multilateral Development Banks</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 06 CLIMATE -->
-  <div class="sector-row s5" data-idx="5">
-    <div class="sector-header" onclick="toggleRow(5)">
-      <span class="sh-num">06</span>
-      <div>
-        <div class="sh-name">Sustainability &amp; Climate Resilience</div>
-        <div class="sh-tagline">Systems under environmental pressure — and what holds</div>
-      </div>
-      <div></div>
-      <div class="sh-toggle">+</div>
-    </div>
-    <div class="sector-body">
-      <div class="sector-body-inner">
-        <div class="sector-body-content">
-          <div class="sb-left">
-            <p class="sb-desc">Climate resilience isn't an environmental question — it's an economic and social one. Our team has assessed how communities, programmes, and systems hold up under environmental pressure, with <strong>research spanning MGNREGA, energy transitions, and urban vulnerability.</strong></p>
-            <div class="sb-section-label">Work our team has done</div>
-            <div class="sb-work-list">
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Coal mine closure impact assessment</strong> — transitioning mining communities to sustainable livelihoods, Ashoka ACPET (two rounds)</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>MGNREGA climate resilience assessment</strong> — how India's rural employment guarantee builds resilience to climate shocks, across 4 states</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>Energy transition livelihood study</strong> — assessment of interventions for coal-dependent communities</div></div>
-              <div class="sb-work-item"><div class="sb-work-dot"></div><div><strong>GAIL CSR impact assessment</strong> — flagship programmes across 11 states including environmental and livelihood components</div></div>
-            </div>
-          </div>
-          <div class="sb-right">
-            <div class="sb-section-label">Services applied</div>
-            <div class="sb-services">
-              <span class="sb-svc-tag teal">Evidence &amp; Data</span>
-              <span class="sb-svc-tag burg">Strategy</span>
-              <span class="sb-svc-tag amber">Advisory</span>
-            </div>
-            <div class="sb-section-label">Types of organisations</div>
-            <div class="sb-orgs">
-              <span class="sb-org">Energy Transition Foundations</span>
-              <span class="sb-org">International Development Organisations</span>
-              <span class="sb-org">Corporate CSR</span>
-              <span class="sb-org">Government Programmes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </div></div></div>
 </div>
-
-<!-- CTA -->
+<div class="sector-row" data-idx="1">
+  <div class="sector-header" onclick="toggleRow(1)">
+    <span class="sh-num">02</span>
+    <div><div class="sh-name">Agriculture &amp; Food Systems</div><div class="sh-tagline">Markets, resilience, and rural livelihoods under pressure.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
+  </div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Rural India's agricultural systems are under simultaneous pressure from climate, markets, and policy. Our team brings both quantitative field research and academic econometric depth — including peer-reviewed publications on agrarian systems and groundwater governance.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--amber)"></div><div class="exp-text"><strong>Rural transformation impact study</strong> — grants evaluation for agricultural livelihoods, Maharashtra and Gujarat</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--amber)"></div><div class="exp-text"><strong>CSR programme evaluation</strong> — agricultural livelihoods and community development assessment</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--amber)"></div><div class="exp-text"><strong>Water and sanitation credit study in FPOs across 6 states</strong> — Tamil Nadu, Maharashtra, UP, West Bengal, Rajasthan, Gujarat</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--amber)"></div><div class="exp-text"><strong>Lead farmer platform evaluation</strong> — season-end study, Samastipur district, Bihar</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--amber)"></div><div class="exp-text"><strong>Peer-reviewed field research on groundwater governance</strong> — published in Economic &amp; Political Weekly</div></div></div>
+    </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag burg">Strategy</span><span class="sb-svc-tag blue">Knowledge &amp; Comms</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">Corporate Foundations</span><span class="sb-org">International Development Organisations</span><span class="sb-org">Academic &amp; Research Institutions</span></div>
+    </div>
+  </div></div></div>
+</div>
+<div class="sector-row" data-idx="2">
+  <div class="sector-header" onclick="toggleRow(2)">
+    <span class="sh-num">03</span>
+    <div><div class="sh-name">Education, Skilling &amp; Livelihoods</div><div class="sh-tagline">From learning systems to meaningful work.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
+  </div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Education interventions are only as strong as their evidence base. Our team has assessed school-level innovation, early childhood development, skilling infrastructure, and youth engagement — with methods designed to measure what actually changes, not just what was delivered.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--violet)"></div><div class="exp-text"><strong>Atal Tinkering Labs national assessment</strong> — evaluation design, data tools, and reporting for NITI Aayog</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--violet)"></div><div class="exp-text"><strong>State Skill Index development</strong> — knowledge partner for UNICEF India, data systems and monitoring</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--violet)"></div><div class="exp-text"><strong>ITI grading across 6 states</strong> — Phase 2 grading of Industrial Training Institutes, Ministry of Skill Development</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--violet)"></div><div class="exp-text"><strong>Early learning programme assessment</strong> — baseline study, Maharashtra</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--violet)"></div><div class="exp-text"><strong>Comprehensive school education assessment</strong> — primary through secondary including Mid-Day Meal, Madhya Pradesh</div></div></div>
+    </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag burg">Strategy</span><span class="sb-svc-tag amber">Advisory</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">Government of India Programmes</span><span class="sb-org">UN Agencies</span><span class="sb-org">State Governments</span><span class="sb-org">Philanthropic Foundations</span></div>
+    </div>
+  </div></div></div>
+</div>
+<div class="sector-row" data-idx="3">
+  <div class="sector-header" onclick="toggleRow(3)">
+    <span class="sh-num">04</span>
+    <div><div class="sh-name">Gender &amp; Social Norms</div><div class="sh-tagline">Behaviour, power, and norms — in practice, not theory.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
+  </div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Gender work that doesn't measure norms doesn't measure the right thing. Our team has designed and run studies specifically focused on how social norms shift, who they affect, and what evidence-led change actually looks like — not just counting female beneficiaries.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Second Chance Education endline</strong> — vocational learning programme for women, UN Women India</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Concurrent evaluation of Taaron ki Toli</strong> — adolescent girls programme, quantitative tools and field monitoring</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Nanhi Kali impact evaluation</strong> — CSR programme for girl child education, Uttar Pradesh</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Gender and violence needs assessment</strong> — minority women across Rajasthan, Haryana, and Madhya Pradesh, UN Women</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>UNFPA adolescent girls endline</strong> — Sammridhhi project evaluation, Madhya Pradesh</div></div></div>
+    </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag amber">Advisory</span><span class="sb-svc-tag blue">Knowledge &amp; Comms</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">UN Agencies</span><span class="sb-org">International NGOs</span><span class="sb-org">Corporate CSR</span><span class="sb-org">Civil Society Organisations</span></div>
+    </div>
+  </div></div></div>
+</div>
+<div class="sector-row" data-idx="4">
+  <div class="sector-header" onclick="toggleRow(4)">
+    <span class="sh-num">05</span>
+    <div><div class="sh-name">Governance, Policy &amp; Markets</div><div class="sh-tagline">Institutions, incentives, and delivery that holds.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
+  </div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Policy work that doesn't understand implementation is just theory. Our team brings macroeconomic analysis, institutional diagnostic capability, and the practical experience of advising government bodies — from state departments to central ministries.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--blue)"></div><div class="exp-text"><strong>Growth Hubs economic strategy</strong> — four regions anchored by NITI Aayog, macroeconomic modelling for Vision 2047</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--blue)"></div><div class="exp-text"><strong>iDEX scheme evaluation</strong> — independent assessment of Defence Innovation Excellence for Ministry of Defence</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--blue)"></div><div class="exp-text"><strong>18 state government scheme assessments</strong> — RFP design, third-party oversight, and report finalisation, Government of Gujarat</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--blue)"></div><div class="exp-text"><strong>Urban expansion research</strong> — analysis of 3,947 towns, spatial regression, policy document for GoI urban planning</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--blue)"></div><div class="exp-text"><strong>Metro rail census and stakeholder consultations</strong> — socio-economic survey for Kanpur Metro Rail project</div></div></div>
+    </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag burg">Strategy</span><span class="sb-svc-tag amber">Advisory</span><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag blue">Knowledge &amp; Comms</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">Government of India Bodies</span><span class="sb-org">State Governments</span><span class="sb-org">International Policy Institutes</span><span class="sb-org">Multilateral Development Banks</span></div>
+    </div>
+  </div></div></div>
+</div>
+<div class="sector-row" data-idx="5">
+  <div class="sector-header" onclick="toggleRow(5)">
+    <span class="sh-num">06</span>
+    <div><div class="sh-name">Sustainability &amp; Climate Resilience</div><div class="sh-tagline">Systems under environmental pressure — and what holds.</div></div>
+    <div></div>
+    <div class="sh-toggle">+</div>
+  </div>
+  <div class="sector-body"><div class="sector-body-inner"><div class="sector-body-content">
+    <div>
+      <p class="sb-desc">Climate resilience isn't an environmental question — it's an economic and social one. Our team has assessed how communities, programmes, and systems hold up under environmental pressure, with research spanning MGNREGA, energy transitions, and urban vulnerability.</p>
+      <div class="svc-section-label" style="margin-top:1.5rem">Work our team has done</div>
+      <div class="exp-grid"><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Coal mine closure impact assessment</strong> — transitioning mining communities to sustainable livelihoods, Ashoka ACPET (two rounds)</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>MGNREGA climate resilience assessment</strong> — how India's rural employment guarantee builds resilience to climate shocks, across 4 states</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>Energy transition livelihood study</strong> — assessment of interventions for coal-dependent communities</div></div><div class="exp-item"><div class="exp-dot" style="background:var(--teal)"></div><div class="exp-text"><strong>GAIL CSR impact assessment</strong> — flagship programmes across 11 states including environmental and livelihood components</div></div></div>
+    </div>
+    <div>
+      <div class="svc-section-label">Services applied</div>
+      <div class="sb-services"><span class="sb-svc-tag teal">Evidence &amp; Data</span><span class="sb-svc-tag burg">Strategy</span><span class="sb-svc-tag amber">Advisory</span></div>
+      <div class="svc-section-label" style="margin-top:1.5rem">Types of organisations</div>
+      <div class="sb-orgs"><span class="sb-org">Energy Transition Foundations</span><span class="sb-org">International Development Organisations</span><span class="sb-org">Corporate CSR</span><span class="sb-org">Government Programmes</span></div>
+    </div>
+  </div></div></div>
+</div>
+</div>
 <div id="work-cta" class="rv">
-  <div class="wc-left">
-    <p class="wc-eyebrow">Work With Us</p>
-    <h2 class="wc-title">Working in<br>one of these <em>sectors?</em></h2>
+  <div>
+    <h2 class="wc-title">Working in one<br>of these <em>sectors?</em></h2>
     <p class="wc-sub">Tell us what you're working on. We'll be honest about whether we're the right fit — and what good work in your area actually looks like.</p>
   </div>
   <div class="wc-right">
-    <a href="/services.html" class="btn-o">See our services</a>
-    <a href="/contact.html" class="btn-p">Start a conversation →</a>
+    <a href="services.html" class="btn-o">See our services</a>
+    <a href="contact.html" class="btn-p">Start a conversation →</a>
   </div>
 </div>
-
-
-<!-- FOOTER -->
-<footer style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10">
+<footer>
   <div>
-    <a href="/index.html" style="text-decoration:none;display:flex;flex-direction:column;gap:5px">
-      <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:22px;width:auto;display:block;opacity:.7">
-      <span style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)">Politely Radical</span>
-    </a>
-    <p style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-top:.85rem;max-width:210px">Research, strategy, and evidence for people building things that matter.</p>
+    <div class="ft-logo"><img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" class="mwr-logo" style="height:22px"></div>
+    <span class="ft-tag">Politely Radical</span>
+    <p class="ft-desc">Research, strategy, and evidence for organisations working on problems that don't have easy answers.</p>
   </div>
   <div>
-    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Navigate</div>
-    <div style="display:flex;flex-direction:column;gap:.55rem">
-      <a href="/services.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s">Services</a>
-      <a href="/work.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Our Work</a>
-      <a href="/about.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">About</a>
-      <a href="/people.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">People</a>
-      <a href="/contact.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Contact</a>
+    <div class="ft-col-label">Navigate</div>
+    <div class="ft-links">
+      <a href="services.html" class="ft-link">Services</a>
+      <a href="work.html" class="ft-link">Our Work</a>
+      <a href="about.html" class="ft-link">About</a>
+      <a href="people.html" class="ft-link">People</a>
+      <a href="contact.html" class="ft-link">Contact</a>
     </div>
   </div>
   <div>
-    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Find Us</div>
-    <div style="display:flex;flex-direction:column;gap:.55rem">
-      <a href="mailto:contact@mwrcollective.com" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">contact@mwrcollective.com</a>
-      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">LinkedIn</a>
-      <span style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
+    <div class="ft-col-label">Find Us</div>
+    <div class="ft-links">
+      <a href="mailto:contact@mwrcollective.com" class="ft-link">contact@mwrcollective.com</a>
+      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" class="ft-link">LinkedIn</a>
+      <span class="ft-link" style="cursor:default;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
     </div>
   </div>
 </footer>
-<div style="border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:var(--ink);position:relative;z-index:10">
-  <span style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.16)">© 2026 Mindworld Research Private Limited</span>
-  <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1)">New Delhi · India</span>
+<div class="ft-copy">
+  <span class="ft-copy-l">© 2026 Mindworld Research Private Limited</span>
+  <span class="ft-copy-r">New Delhi · India</span>
 </div>
-
 </main>
-
 <div id="bbar">
   <div class="bb-l">
     <div class="bb-i"><div class="bb-d" style="background:var(--teal)"></div>Our Work</div>
@@ -606,53 +350,31 @@ main{position:relative;z-index:10}
   </div>
   <div class="bb-r">Politely Radical — MWR Collective 2026</div>
 </div>
-
 <script>
-// CURSOR
 const cur=document.getElementById('cur'),crr=document.getElementById('crr');
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,rx=mx,ry=my;
 window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function t(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.07;ry+=(my-ry)*.07;
-  cur.style.left=cx+'px';cur.style.top=cy+'px';
-  crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(t)})();
-document.querySelectorAll('a,button,.sector-header,.sb-work-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
-});
-
-// ACCORDION
-function toggleRow(idx){
-  const rows=document.querySelectorAll('.sector-row');
-  const row=rows[idx];
-  const isOpen=row.classList.contains('open');
-  // close all
-  rows.forEach(r=>r.classList.remove('open'));
-  // open if wasn't open
-  if(!isOpen)row.classList.add('open');
-}
-
-// PLASMA — teal dominant
+(function t(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.07;ry+=(my-ry)*.07;cur.style.left=cx+'px';cur.style.top=cy+'px';crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(t)})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
 (function(){
-  function hexRGB(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  function h(c){return[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)]}
   const orbs=[
-    {c:'#1B7A65',xf:.18,yf:.22,xp:0,  yp:1.0,xa:.40,ya:.34,xc:.65,yc:.35,r:580,a:.65},
-    {c:'#0F5244',xf:.12,yf:.16,xp:2.0,yp:0.5,xa:.32,ya:.40,xc:.75,yc:.60,r:500,a:.52},
-    {c:'#1B7A65',xf:.22,yf:.14,xp:1.5,yp:2.5,xa:.28,ya:.30,xc:.30,yc:.70,r:460,a:.48},
-    {c:'#0F5244',xf:.09,yf:.20,xp:3.1,yp:0.8,xa:.36,ya:.28,xc:.80,yc:.25,r:420,a:.42},
-    {c:'#2058A8',xf:.16,yf:.11,xp:0.8,yp:3.0,xa:.30,ya:.36,xc:.20,yc:.40,r:440,a:.35},
-    {c:'#1B7A65',xf:.20,yf:.18,xp:2.4,yp:1.3,xa:.34,ya:.26,xc:.55,yc:.80,r:400,a:.38},
-    {c:'#C8203A',xf:.11,yf:.13,xp:1.2,yp:2.2,xa:.22,ya:.32,xc:.15,yc:.20,r:360,a:.25},
-    {c:'#D4823E',xf:.14,yf:.09,xp:3.8,yp:0.4,xa:.26,ya:.38,xc:.88,yc:.85,r:340,a:.22},
-  ];
-  const canvas=document.getElementById('plasma');
-  const ctx=canvas.getContext('2d');
+  {c:'#1B7A65',xf:.18,yf:.22,xp:0,  yp:1.0,xa:.40,ya:.34,xc:.65,yc:.35,r:580,a:1.0},
+  {c:'#0F5244',xf:.12,yf:.16,xp:2.0,yp:0.5,xa:.32,ya:.40,xc:.75,yc:.60,r:500,a:.85},
+  {c:'#1B7A65',xf:.22,yf:.14,xp:1.5,yp:2.5,xa:.28,ya:.30,xc:.30,yc:.70,r:460,a:.80},
+  {c:'#0F5244',xf:.09,yf:.20,xp:3.1,yp:0.8,xa:.36,ya:.28,xc:.80,yc:.25,r:420,a:.75},
+  {c:'#2058A8',xf:.16,yf:.11,xp:0.8,yp:3.0,xa:.30,ya:.36,xc:.20,yc:.40,r:440,a:.60},
+  {c:'#C8203A',xf:.11,yf:.13,xp:1.2,yp:2.2,xa:.22,ya:.32,xc:.15,yc:.20,r:360,a:.45},
+  {c:'#D4823E',xf:.14,yf:.09,xp:3.8,yp:0.4,xa:.26,ya:.38,xc:.88,yc:.85,r:340,a:.40},
+];
+  const canvas=document.getElementById('plasma'),ctx=canvas.getContext('2d');
   let W,H,t=0,pmx=.5,pmy=.5;
-  const RGB=orbs.map(o=>hexRGB(o.c));
+  const RGB=orbs.map(o=>h(o.c));
   function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
   resize();window.addEventListener('resize',resize);
   window.addEventListener('mousemove',e=>{pmx=e.clientX/W;pmy=e.clientY/H});
   function draw(){
-    ctx.fillStyle='#0A0908';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#13100F';ctx.fillRect(0,0,W,H);
     ctx.globalCompositeOperation='screen';
     orbs.forEach((orb,i)=>{
       let x=(orb.xc+Math.sin(t*orb.xf+orb.xp)*orb.xa)*W;
@@ -660,180 +382,40 @@ function toggleRow(idx){
       x+=(pmx*W-x)*.018;y+=(pmy*H-y)*.018;
       const r=orb.r*(0.82+Math.sin(t*orb.xf*1.7+i*.8)*.18);
       const a=orb.a*0.42*(0.78+Math.sin(t*orb.yf*1.3+i*1.2)*.22);
-      const grad=ctx.createRadialGradient(x,y,0,x,y,r);
+      const g=ctx.createRadialGradient(x,y,0,x,y,r);
       const[R,G,B]=RGB[i];
-      grad.addColorStop(0,`rgba(${R},${G},${B},${a})`);
-      grad.addColorStop(0.3,`rgba(${R},${G},${B},${a*.65})`);
-      grad.addColorStop(0.6,`rgba(${R},${G},${B},${a*.25})`);
-      grad.addColorStop(1,`rgba(${R},${G},${B},0)`);
-      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+      g.addColorStop(0,`rgba(${R},${G},${B},${a})`);
+      g.addColorStop(.3,`rgba(${R},${G},${B},${a*.6})`);
+      g.addColorStop(.65,`rgba(${R},${G},${B},${a*.22})`);
+      g.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
     });
-    for(let i=0;i<5;i++){
+    for(let i=0;i<6;i++){
       const ly=H*(Math.abs(Math.sin(t*.07+i*1.37+i*.41))%1);
-      const a=(0.03+Math.sin(t*.4+i*1.9)*.012)*0.42;
-      const hw=90+Math.sin(t*.12+i)*60;
+      const a=(0.04+Math.sin(t*.4+i*1.9)*.02)*0.42;
+      const hw=110+Math.sin(t*.12+i)*70;
       const lx=W*(Math.abs(Math.sin(t*.04+i*2.6))%1);
       const[R,G,B]=RGB[i%RGB.length];
       const lg=ctx.createLinearGradient(lx-hw,ly,lx+hw,ly);
       lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
       lg.addColorStop(.5,`rgba(${R},${G},${B},${a})`);
       lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
-      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1,hw*2,2);
+      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1.5,hw*2,3);
     }
     ctx.globalCompositeOperation='source-over';
-    t+=.005;requestAnimationFrame(draw);
+    t+=0.005;requestAnimationFrame(draw);
   }
   draw();
 })();
-
-// REVEAL
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
-},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.rv,.sector-row').forEach((el,i)=>{
-  if(el.classList.contains('sector-row'))el.style.transitionDelay=`${i*.07}s`;
-  io.observe(el);
-});
+function toggleRow(idx){
+  const rows=document.querySelectorAll('.sector-row');
+  const row=rows[idx];
+  const isOpen=row.classList.contains('open');
+  rows.forEach(r=>r.classList.remove('open'));
+  if(!isOpen)row.classList.add('open');
+}
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.sector-row').forEach((el,i)=>{if(el.classList.contains('sector-row'))el.style.transitionDelay=`${i*.06}s`;io.observe(el)});
 </script>
-
-<style>
-@media(max-width:768px){
-  html{font-size:15px}body{cursor:auto}
-  #cur,#crr{display:none}
-  nav{padding:0 1.25rem}
-  .nav-r .nav-link{display:none}
-  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
-  #bbar{padding:0 1.25rem}
-  .bb-r{display:none}
-  #page-hero{padding:calc(52px + 3rem) 1.25rem 3rem;grid-template-columns:1fr;gap:2rem}
-  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
-  .ph-ghost{display:none}
-}
-</style>
-
-
-<style>
-/* ── MOBILE RESPONSIVE ── */
-@media(max-width:768px){
-  html{font-size:15px}
-  body{cursor:auto}
-  #cur,#crr{display:none}
-  nav{padding:0 1.25rem}
-  .nav-r .nav-link{display:none}
-  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
-  #bbar{padding:0 1.25rem}
-  .bb-r{display:none}
-
-  /* Page heroes */
-  #page-hero{
-    padding:calc(52px + 3rem) 1.25rem 3rem;
-    grid-template-columns:1fr;
-    gap:2rem;
-  }
-  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
-  .ph-ghost{display:none}
-  .ph-jumps{grid-template-columns:1fr 1fr}
-
-  /* Services */
-  #approach{grid-template-columns:1fr;padding:2.5rem 1.25rem}
-  .approach-text{font-size:1.1rem}
-  .svc-main{grid-template-columns:1fr}
-  .svc-left{
-    position:relative;top:auto;
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    padding:2rem 1.25rem
-  }
-  .svc-right{padding:2rem 1.25rem}
-  .connect-flow{grid-template-columns:1fr 1fr}
-  #connect{padding:4rem 1.25rem}
-  .connect-header{margin-bottom:2rem}
-  .connect-cta{flex-direction:column;gap:1.5rem;padding:2rem 1.25rem}
-  .cc-actions{width:100%;flex-direction:column}
-  .cc-actions .btn-p,.cc-actions .btn-o{width:100%;justify-content:center}
-
-  /* Work */
-  .sector-header{
-    grid-template-columns:40px 1fr auto;
-    padding:1.5rem 1.25rem;
-    gap:.85rem
-  }
-  .sh-tagline{display:none}
-  .sector-body-content{
-    grid-template-columns:1fr;
-    padding:1.5rem 1.25rem 2.5rem
-  }
-  #work-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .wc-right{flex-direction:column;width:100%}
-  .wc-right .btn-p,.wc-right .btn-o{width:100%;justify-content:center}
-  #sectors-note{flex-direction:column;padding:1.5rem 1.25rem;gap:.75rem}
-
-  /* About */
-  #manifesto{
-    grid-template-columns:1fr;
-    padding:4rem 1.25rem;
-    gap:3rem
-  }
-  .mf-headline{font-size:clamp(1.8rem,8vw,2.6rem)}
-  #name-section{
-    grid-template-columns:1fr;
-    padding:2.5rem 1.25rem;
-    gap:1rem
-  }
-  #approach-grid{padding:4rem 1.25rem}
-  .ag-grid{grid-template-columns:1fr 1fr}
-  #about-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .ac-right{flex-direction:column;width:100%}
-  .ac-right .btn-p,.ac-right .btn-o{width:100%;justify-content:center}
-  #page-hero .ph-inner{grid-template-columns:1fr;gap:2rem}
-
-  /* People */
-  .person-card{grid-template-columns:1fr}
-  .pc-left{
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    padding:2rem 1.25rem
-  }
-  .pc-right{padding:2rem 1.25rem}
-  #people-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .pct-right{flex-direction:column;width:100%}
-  .pct-right .btn-p,.pct-right .btn-o{width:100%;justify-content:center}
-
-  /* Contact */
-  main[style*="grid-template-columns:1fr 1fr"],
-  main{grid-template-columns:1fr !important}
-  .ct-left{
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.07);
-    padding:4rem 1.25rem 3rem
-  }
-  .ct-right{padding:3rem 1.25rem 4rem}
-  .ct-headline{font-size:clamp(2.2rem,9vw,3.5rem)}
-  .form-row{grid-template-columns:1fr}
-}
-
-@media(min-width:769px) and (max-width:1024px){
-  nav,#bbar{padding-left:2rem;padding-right:2rem}
-  #page-hero{padding-left:2rem;padding-right:2rem}
-  .svc-main{grid-template-columns:220px 1fr}
-  .person-card{grid-template-columns:260px 1fr}
-  .sector-body-content{grid-template-columns:1fr}
-  #manifesto{padding:5rem 2rem;gap:3rem}
-  .connect-flow{grid-template-columns:1fr 1fr}
-}
-</style>
-
 </body>
 </html>

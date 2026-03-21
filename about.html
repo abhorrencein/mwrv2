@@ -8,183 +8,177 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:17px;scroll-behavior:smooth}
-body{background:#0A0908;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden}
+body{background:#13100F;color:#F7F5F0;font-family:'Manrope',sans-serif;cursor:none;overflow-x:hidden}
 :root{
-  --ink:#0A0908;--paper:#F7F5F0;--paper2:#E8E4DB;
+  --ink:#13100F;--paper:#F7F5F0;--paper2:#E8E4DB;
   --burg:#C8203A;--burg-d:#8B1525;
   --amber:#D4823E;--teal:#1B7A65;--blue:#2058A8;--violet:#6B3FA0;
   --f-d:'Syne',sans-serif;--f-m:'DM Mono',monospace;
   --ease-out:cubic-bezier(0.22,1,0.36,1);
 }
 #cur{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);background:white;mix-blend-mode:difference}
-#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,0.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
+#crr{position:fixed;width:32px;height:32px;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.22);opacity:.35;transition:width .45s var(--ease-out),height .45s var(--ease-out)}
 body.hov #crr{width:54px;height:54px;opacity:.1}
+.mwr-logo{height:26px;width:auto;max-width:130px;object-fit:contain;display:block;image-rendering:crisp-edges}
 #plasma{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
-.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
-.nav-logo{font-family:var(--f-d);font-size:1.15rem;font-weight:800;letter-spacing:.05em;color:white;line-height:1}
-.nav-logo em{color:var(--burg);font-style:normal}
-.nav-tag{font-family:var(--f-m);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
-.nav-r{display:flex;align-items:center;gap:2rem}
+main{position:relative;z-index:10}
+nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(19,16,15,.82);backdrop-filter:blur(18px)}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:3px}
+.nav-tag{font-family:var(--f-m);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)}
+.nav-r{display:flex;align-items:center;gap:1.75rem}
 .nav-link{font-family:var(--f-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.42);transition:color .2s}
 .nav-link:hover,.nav-link.active{color:white}
 .nav-cta{font-family:var(--f-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.38rem 1rem;border:1px solid var(--burg);color:var(--burg);transition:all .2s}
 .nav-cta:hover{background:var(--burg);color:white}
-#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,0.07);background:rgba(10,9,8,0.88);backdrop-filter:blur(18px)}
+#bbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 2.8rem;border-top:1px solid rgba(255,255,255,.07);background:rgba(19,16,15,.82);backdrop-filter:blur(18px)}
 .bb-l{display:flex;gap:1.75rem}
-.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:.42rem}
+.bb-i{font-family:var(--f-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:.42rem}
 .bb-d{width:5px;height:5px;border-radius:50%}
-.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.13)}
-main{position:relative;z-index:10}
-
+.bb-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.15)}
+footer{background:#13100F;border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10}
+.ft-logo{margin-bottom:.35rem}
+.ft-tag{font-family:var(--f-m);font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg);display:block;margin-bottom:.85rem}
+.ft-desc{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.3);line-height:1.7;max-width:210px}
+.ft-col-label{font-family:var(--f-m);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:1rem}
+.ft-links{display:flex;flex-direction:column;gap:.55rem}
+.ft-link{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
+.ft-link:hover{color:white}
+.ft-copy{border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:#13100F;position:relative;z-index:10}
+.ft-copy-l{font-family:var(--f-m);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.ft-copy-r{font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.12)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.btn-p{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;background:var(--burg);color:white;border:1px solid var(--burg);transition:background .2s;display:inline-flex;align-items:center;gap:.4rem;cursor:none}
+.btn-p:hover{background:var(--burg-d)}
+.btn-o{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.18);transition:all .2s;cursor:none}
+.btn-o:hover{color:white;border-color:rgba(255,255,255,.45)}
 /* PAGE HERO */
-#page-hero{
-  padding:calc(52px + 5rem) 3.2rem 5rem;
-  border-bottom:1px solid rgba(255,255,255,0.07);
-  position:relative;overflow:hidden;
-}
-.ph-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--f-d);font-size:28vw;font-weight:800;color:rgba(255,255,255,0.022);line-height:1;letter-spacing:-.06em;pointer-events:none;user-select:none}
-.ph-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.ph-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:.7rem;margin-bottom:1.25rem}
-.ph-eyebrow::before{content:'';width:20px;height:1px;background:var(--amber);display:inline-block}
+.page-hero{padding:calc(52px + 5rem) 3.2rem 4.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;position:relative;overflow:hidden}
+.ph-ghost{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:var(--f-d);font-size:28vw;font-weight:800;color:rgba(255,255,255,.022);line-height:1;letter-spacing:-.06em;pointer-events:none;user-select:none}
+.ph-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.7rem;margin-bottom:1.25rem}
+.ph-eyebrow::before{content:'';width:20px;height:1px;background:currentColor;display:inline-block}
 .ph-title{font-family:var(--f-d);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;line-height:.9;letter-spacing:-.045em;color:white}
-.ph-title em{color:var(--amber);font-style:normal}
-.ph-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.88}
-.ph-intro strong{font-weight:500;color:rgba(255,255,255,.75)}
-
-/* MANIFESTO */
-#manifesto{
-  padding:6rem 3.2rem;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;
+.ph-title em{font-style:normal}
+.ph-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.88}
+.ph-intro strong{font-weight:500;color:rgba(255,255,255,.82)}
+/* SHARED MOBILE */
+@media(max-width:768px){
+  html{font-size:15px}body{cursor:auto}
+  #cur,#crr{display:none}
+  nav{padding:0 1.2rem;height:56px}
+  .mwr-logo{height:22px!important}
+  .nav-r .nav-link{display:none}
+  .nav-cta{font-size:.56rem;padding:.3rem .7rem}
+  #bbar{padding:0 1.2rem}
+  .bb-i:nth-child(n+2){display:none}
+  .bb-r{display:none}
+  .page-hero{padding:calc(56px + 2.5rem) 1.2rem 2.5rem;grid-template-columns:1fr;gap:1.5rem}
+  .ph-title{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .ph-ghost{display:none}
+  footer{grid-template-columns:1fr;padding:2rem 1.2rem;gap:1.75rem}
+  .ft-copy{padding:1.2rem;flex-direction:column;gap:.4rem}
+  .btn-p,.btn-o{width:100%;justify-content:center}
 }
-.mf-left{}
+@media(min-width:769px) and (max-width:1100px){
+  nav,#bbar{padding-left:2rem;padding-right:2rem}
+  .page-hero,footer,.ft-copy{padding-left:2rem;padding-right:2rem}
+}
+/* MANIFESTO — light */
+#manifesto{background:var(--paper);padding:6rem 3.2rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;border-bottom:1px solid rgba(10,9,8,.08)}
 .mf-label{font-family:var(--f-m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:.7rem;margin-bottom:2rem}
 .mf-label::before{content:'';width:20px;height:1px;background:var(--amber);display:inline-block}
-.mf-headline{font-family:var(--f-d);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:white;margin-bottom:2rem}
+.mf-headline{font-family:var(--f-d);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--ink);margin-bottom:2rem}
 .mf-headline em{color:var(--amber);font-style:normal;display:block}
 .mf-body{display:flex;flex-direction:column;gap:1.1rem}
-.mf-body p{font-size:1rem;font-weight:300;color:rgba(255,255,255,.48);line-height:1.9}
-.mf-body strong{font-weight:500;color:rgba(255,255,255,.78)}
-
-.mf-right{display:flex;flex-direction:column;gap:0}
-.mf-principle{
-  padding:1.65rem 0;border-top:1px solid rgba(255,255,255,.07);
-  display:grid;grid-template-columns:3px 1fr;gap:1.25rem;
-  transition:padding-left .2s var(--ease-out);cursor:none;
-}
-.mf-principle:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
+.mf-body p{font-size:1rem;font-weight:300;color:rgba(10,9,8,.58);line-height:1.9}
+.mf-body strong{font-weight:500;color:var(--ink)}
+.mf-right{display:flex;flex-direction:column}
+.mf-principle{padding:1.65rem 0;border-top:1px solid rgba(10,9,8,.08);display:grid;grid-template-columns:3px 1fr;gap:1.25rem;transition:padding-left .2s var(--ease-out)}
+.mf-principle:last-child{border-bottom:1px solid rgba(10,9,8,.08)}
 .mf-principle:hover{padding-left:.5rem}
-.mp-bar{width:3px;border-radius:2px;transition:opacity .2s}
+.mp-bar{width:3px;border-radius:2px}
 .mf-principle:nth-child(1) .mp-bar{background:var(--burg)}
 .mf-principle:nth-child(2) .mp-bar{background:var(--amber)}
 .mf-principle:nth-child(3) .mp-bar{background:var(--teal)}
 .mf-principle:nth-child(4) .mp-bar{background:var(--blue)}
-.mp-title{font-family:var(--f-d);font-size:1rem;font-weight:800;color:rgba(255,255,255,.82);letter-spacing:-.02em;margin-bottom:.4rem;line-height:1;transition:color .2s}
+.mp-title{font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:.4rem;line-height:1;transition:color .2s}
 .mf-principle:nth-child(1):hover .mp-title{color:var(--burg)}
 .mf-principle:nth-child(2):hover .mp-title{color:var(--amber)}
 .mf-principle:nth-child(3):hover .mp-title{color:var(--teal)}
 .mf-principle:nth-child(4):hover .mp-title{color:var(--blue)}
-.mp-desc{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.65;transition:color .2s}
-.mf-principle:hover .mp-desc{color:rgba(255,255,255,.58)}
-
-/* NAME */
-#name-section{
-  padding:4.5rem 3.2rem;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:grid;grid-template-columns:200px 1fr;gap:4rem;align-items:start;
-  background:rgba(255,255,255,.015);
-}
-.ns-label{font-family:var(--f-m);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);padding-top:.2rem}
-.ns-content{}
+.mp-desc{font-size:.9rem;font-weight:300;color:rgba(10,9,8,.48);line-height:1.65;transition:color .2s}
+.mf-principle:hover .mp-desc{color:rgba(10,9,8,.72)}
+/* NAME STRIP */
+#name-section{padding:4rem 3.2rem;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:180px 1fr;gap:4rem;align-items:start;background:rgba(255,255,255,.02)}
+.ns-label{font-family:var(--f-m);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);padding-top:.2rem}
 .ns-title{font-family:var(--f-d);font-size:1.3rem;font-weight:800;color:white;letter-spacing:-.02em;margin-bottom:.85rem}
-.ns-body{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.85}
-.ns-body strong{font-weight:500;color:rgba(255,255,255,.72)}
-
+.ns-body{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.85}
+.ns-body strong{font-weight:500;color:rgba(255,255,255,.75)}
 /* APPROACH GRID */
-#approach-grid{
-  padding:6rem 3.2rem;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.ag-header{margin-bottom:3.5rem}
+#approach-grid{padding:5.5rem 3.2rem;border-bottom:1px solid rgba(255,255,255,.07)}
 .ag-eyebrow{font-family:var(--f-m);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
 .ag-eyebrow::before{content:'';width:20px;height:1px;background:var(--amber);display:inline-block}
-.ag-title{font-family:var(--f-d);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:white}
+.ag-title{font-family:var(--f-d);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:white;margin-bottom:3rem}
 .ag-title em{color:var(--amber);font-style:normal}
-.ag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
-.ag-cell{
-  background:var(--ink);padding:2.25rem 2rem;
-  position:relative;overflow:hidden;transition:background .2s;
-}
-.ag-cell:hover{background:rgba(255,255,255,.03)}
+.ag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07)}
+.ag-cell{background:#13100F;padding:2.25rem 2rem;position:relative;overflow:hidden;transition:background .2s}
+.ag-cell:hover{background:rgba(255,255,255,.04)}
 .ag-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out)}
 .ag-cell:hover::before{transform:scaleX(1)}
-.ag-cell:nth-child(1)::before{background:var(--burg)}
-.ag-cell:nth-child(2)::before{background:var(--teal)}
-.ag-cell:nth-child(3)::before{background:var(--amber)}
-.ag-cell:nth-child(4)::before{background:var(--blue)}
-.ag-cell:nth-child(5)::before{background:var(--violet)}
-.ag-cell:nth-child(6)::before{background:var(--burg)}
-.ag-cell-num{font-family:var(--f-m);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.75rem}
-.ag-cell-title{font-family:var(--f-d);font-size:1rem;font-weight:800;color:rgba(255,255,255,.82);letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.1}
-.ag-cell-desc{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.65}
-
+.ag-cell:nth-child(1)::before{background:var(--burg)}.ag-cell:nth-child(2)::before{background:var(--teal)}.ag-cell:nth-child(3)::before{background:var(--amber)}
+.ag-cell:nth-child(4)::before{background:var(--blue)}.ag-cell:nth-child(5)::before{background:var(--violet)}.ag-cell:nth-child(6)::before{background:var(--burg)}
+.ag-num{font-family:var(--f-m);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.75rem}
+.ag-title-cell{font-family:var(--f-d);font-size:1rem;font-weight:800;color:rgba(255,255,255,.88);letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.1}
+.ag-desc{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.65}
 /* CTA */
-#about-cta{
-  padding:5rem 3.2rem;
-  display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;
-  border-top:1px solid rgba(255,255,255,.06);
-}
+#about-cta{padding:5rem 3.2rem;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;border-top:1px solid rgba(255,255,255,.07)}
 .ac-title{font-family:var(--f-d);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:white}
 .ac-title em{color:var(--amber);font-style:normal}
-.ac-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.38);line-height:1.75;margin-top:.85rem;max-width:440px}
+.ac-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.42);line-height:1.75;margin-top:.85rem;max-width:440px}
 .ac-right{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;flex-shrink:0}
-.btn-p{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;background:var(--burg);color:white;border:1px solid var(--burg);transition:background .2s;display:inline-flex;align-items:center;gap:.4rem}
-.btn-p:hover{background:var(--burg-d)}
-.btn-o{font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:.7rem 1.5rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.16);transition:all .2s}
-.btn-o:hover{color:white;border-color:rgba(255,255,255,.42)}
-
-.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
-.rv.vis{opacity:1;transform:translateY(0)}
-
-/* Logo image fixes */
-.nav-brand img { display:block; height:30px; width:auto; }
-.nav-brand { gap:4px; }
-
+@media(max-width:768px){
+  #manifesto{grid-template-columns:1fr;padding:3.5rem 1.2rem;gap:2.5rem}
+  .mf-headline{font-size:clamp(1.6rem,7vw,2.4rem)}
+  #name-section{grid-template-columns:1fr;padding:2rem 1.2rem;gap:.75rem}
+  #approach-grid{padding:3.5rem 1.2rem}
+  .ag-grid{grid-template-columns:1fr 1fr}
+  #about-cta{grid-template-columns:1fr;padding:3.5rem 1.2rem;gap:2rem}
+  .ac-right{align-items:flex-start}
+}
+@media(min-width:769px) and (max-width:1100px){
+  #manifesto,#name-section,#approach-grid,#about-cta{padding-left:2rem;padding-right:2rem}
+}
 </style>
 </head>
 <body>
 <div id="cur"></div><div id="crr"></div>
 <canvas id="plasma"></canvas>
 <nav>
-  <a href="/index.html" class="nav-brand"><img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:28px;width:auto;display:block"><span class="nav-tag">Politely Radical</span></a>
+  <a href="index.html" class="nav-brand">
+    <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" class="mwr-logo">
+    <span class="nav-tag">Politely Radical</span>
+  </a>
   <div class="nav-r">
-    <a href="/services.html" class="nav-link">Services</a>
-    <a href="/work.html" class="nav-link">Our Work</a>
-    <a href="/about.html" class="nav-link active">About</a>
-    <a href="/people.html" class="nav-link">People</a>
-    <a href="/contact.html" class="nav-cta">Work With Us</a>
+    <a href="services.html" class="nav-link ">Services</a>
+    <a href="work.html" class="nav-link ">Our Work</a>
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="people.html" class="nav-link ">People</a>
+    <a href="contact.html" class="nav-cta ">Work With Us</a>
   </div>
 </nav>
 <main>
-
-<div id="page-hero">
+<div class="page-hero">
   <div class="ph-ghost">MWR</div>
-  <div class="ph-inner">
-    <div class="rv">
-      <p class="ph-eyebrow">Who We Are</p>
-      <h1 class="ph-title">Rigour without<br><em>the theatre.</em></h1>
-    </div>
-    <p class="ph-intro rv" style="transition-delay:.1s">
-      <strong>MWR Collective is a research, strategy, and evidence firm</strong> built on a simple premise — that the best work happens when the people doing it actually care about the question, the context, and the people the answer is for.
-    </p>
+  <div class="rv">
+    <p class="ph-eyebrow" style="color:var(--amber)">Who We Are</p>
+    <h1 class="ph-title">Rigour without<br><em style="color:var(--amber)">the theatre.</em></h1>
   </div>
+  <p class="ph-intro rv" style="transition-delay:.1s"><strong>MWR Collective is a research, strategy, and evidence firm</strong> built on a simple premise — that the best work happens when the people doing it actually care about the question, the context, and the people the answer is for.</p>
 </div>
-
 <section id="manifesto">
-  <div class="mf-left rv">
+  <div class="rv">
     <p class="mf-label">The Story</p>
-    <h2 class="mf-headline">We started with<br>a <em>choice.</em></h2>
+    <h2 class="mf-headline">We started with<br><em>a choice.</em></h2>
     <div class="mf-body">
       <p>Not the conventional path. A deliberate decision to build something with <strong>room for ideas, honesty, and work that means something</strong> — rather than fitting into a structure that values optics over outcomes.</p>
       <p>MWR exists because good research and strategy work is rare. Most of it gets diluted by the pressure to look impressive, the incentive to tell clients what they want to hear, and the habit of dressing up inconclusive findings as definitive answers.</p>
@@ -192,117 +186,72 @@ main{position:relative;z-index:10}
     </div>
   </div>
   <div class="mf-right rv" style="transition-delay:.12s">
-    <div class="mf-principle">
-      <div class="mp-bar"></div>
-      <div><div class="mp-title">Rigour without the theatre</div><div class="mp-desc">Good work doesn't need a performance. We focus on getting things right over looking impressive doing it.</div></div>
-    </div>
-    <div class="mf-principle">
-      <div class="mp-bar"></div>
-      <div><div class="mp-title">Built to last beyond the deck</div><div class="mp-desc">We're not in the business of recommendations that expire on delivery. Strategy that survives contact with reality.</div></div>
-    </div>
-    <div class="mf-principle">
-      <div class="mp-bar"></div>
-      <div><div class="mp-title">Excellence that stays human</div><div class="mp-desc">High standards and warmth aren't opposites. We expect a lot — from the work and from ourselves.</div></div>
-    </div>
-    <div class="mf-principle">
-      <div class="mp-bar"></div>
-      <div><div class="mp-title">Freedom to leap</div><div class="mp-desc">The best ideas come from people who feel safe to think out loud, disagree, and be wrong. We've built for that.</div></div>
-    </div>
+    <div class="mf-principle"><div class="mp-bar"></div><div><div class="mp-title">Rigour without the theatre</div><div class="mp-desc">Good work doesn't need a performance. We focus on getting things right over looking impressive doing it.</div></div></div>
+    <div class="mf-principle"><div class="mp-bar"></div><div><div class="mp-title">Built to last beyond the deck</div><div class="mp-desc">We're not in the business of recommendations that expire on delivery. Strategy that survives contact with reality.</div></div></div>
+    <div class="mf-principle"><div class="mp-bar"></div><div><div class="mp-title">Excellence that stays human</div><div class="mp-desc">High standards and warmth aren't opposites. We expect a lot — from the work and from ourselves.</div></div></div>
+    <div class="mf-principle"><div class="mp-bar"></div><div><div class="mp-title">Smart enough to know the rules.<br>Confident enough to question them.</div><div class="mp-desc">Serious impact delivered with spirit. Politely radical — in every engagement.</div></div></div>
   </div>
 </section>
-
 <div id="name-section" class="rv">
   <span class="ns-label">About the name</span>
-  <div class="ns-content">
+  <div>
     <div class="ns-title">Mindworld Research Private Limited</div>
-    <p class="ns-body">MWR Collective operates as <strong>Mindworld Research Private Limited</strong> — our registered entity. The name reflects what we do: research that works at the intersection of data, systems, and human behaviour. We go by MWR because it's shorter, but the full name is on every contract.</p>
+    <p class="ns-body">MWR Collective operates as <strong>Mindworld Research Private Limited</strong> — our registered, DPIIT-recognised startup entity. The name reflects what we do: research that works at the intersection of data, systems, and human behaviour. We go by MWR because it's shorter, but the full name is on every contract.</p>
   </div>
 </div>
-
 <section id="approach-grid">
-  <div class="ag-header rv">
+  <div class="rv">
     <p class="ag-eyebrow">What Makes Us Different</p>
     <h2 class="ag-title">Not one thing.<br><em>All of them.</em></h2>
   </div>
   <div class="ag-grid">
-    <div class="ag-cell rv">
-      <div class="ag-cell-num">01</div>
-      <div class="ag-cell-title">Academic depth</div>
-      <div class="ag-cell-desc">PhD-level econometrics, peer-reviewed publications, and methodological rigour that most consulting firms can't access.</div>
-    </div>
-    <div class="ag-cell rv" style="transition-delay:.07s">
-      <div class="ag-cell-num">02</div>
-      <div class="ag-cell-title">Field operations at scale</div>
-      <div class="ag-cell-desc">40+ programmes, 20+ states. We've run large field operations and know what actually goes wrong — and how to prevent it.</div>
-    </div>
-    <div class="ag-cell rv" style="transition-delay:.14s">
-      <div class="ag-cell-num">03</div>
-      <div class="ag-cell-title">Policy instinct</div>
-      <div class="ag-cell-desc">Economic strategy advisory for NITI Aayog, state governments, and multilaterals. We understand how policy actually gets made.</div>
-    </div>
-    <div class="ag-cell rv" style="transition-delay:.21s">
-      <div class="ag-cell-num">04</div>
-      <div class="ag-cell-title">Small and senior</div>
-      <div class="ag-cell-desc">No juniors running your project while the partners are elsewhere. The people you hire are the people who do the work.</div>
-    </div>
-    <div class="ag-cell rv" style="transition-delay:.28s">
-      <div class="ag-cell-num">05</div>
-      <div class="ag-cell-title">Honest counsel</div>
-      <div class="ag-cell-desc">We tell clients what they need to hear, not just what they want. If the evidence doesn't support your hypothesis, we'll say so.</div>
-    </div>
-    <div class="ag-cell rv" style="transition-delay:.35s">
-      <div class="ag-cell-num">06</div>
-      <div class="ag-cell-title">Politely radical</div>
-      <div class="ag-cell-desc">Smart enough to know the rules. Confident enough to question them. Serious impact delivered with spirit.</div>
-    </div>
+    <div class="ag-cell rv"><div class="ag-num">01</div><div class="ag-title-cell">Academic depth</div><div class="ag-desc">PhD-level econometrics, peer-reviewed publications, and methodological rigour that most consulting firms can't access.</div></div>
+    <div class="ag-cell rv" style="transition-delay:.07s"><div class="ag-num">02</div><div class="ag-title-cell">Field operations at scale</div><div class="ag-desc">40+ programmes, 20+ states. Our team has run large field operations and knows what actually goes wrong — and how to prevent it.</div></div>
+    <div class="ag-cell rv" style="transition-delay:.14s"><div class="ag-num">03</div><div class="ag-title-cell">Policy instinct</div><div class="ag-desc">Economic strategy advisory for NITI Aayog, state governments, and multilaterals. We understand how policy actually gets made.</div></div>
+    <div class="ag-cell rv" style="transition-delay:.21s"><div class="ag-num">04</div><div class="ag-title-cell">Small and senior</div><div class="ag-desc">No juniors running your project while the partners are elsewhere. The people you hire are the people who do the work.</div></div>
+    <div class="ag-cell rv" style="transition-delay:.28s"><div class="ag-num">05</div><div class="ag-title-cell">Honest counsel</div><div class="ag-desc">We tell clients what they need to hear, not just what they want. If the evidence doesn't support your hypothesis, we'll say so.</div></div>
+    <div class="ag-cell rv" style="transition-delay:.35s"><div class="ag-num">06</div><div class="ag-title-cell">Politely radical</div><div class="ag-desc">Smart enough to know the rules. Confident enough to question them. Serious impact delivered with spirit.</div></div>
   </div>
 </section>
-
 <div id="about-cta" class="rv">
   <div>
     <h2 class="ac-title">Meet the<br><em>team.</em></h2>
     <p class="ac-sub">Three researchers, one standard. See who's behind the work and what they bring to it.</p>
   </div>
   <div class="ac-right">
-    <a href="/people.html" class="btn-p">Our People →</a>
-    <a href="/contact.html" class="btn-o">Work With Us</a>
+    <a href="people.html" class="btn-p">Our People →</a>
+    <a href="contact.html" class="btn-o">Work With Us</a>
   </div>
 </div>
-
-
-<!-- FOOTER -->
-<footer style="background:var(--ink);border-top:1px solid rgba(255,255,255,.07);padding:2.5rem 3.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;position:relative;z-index:10">
+<footer>
   <div>
-    <a href="/index.html" style="text-decoration:none;display:flex;flex-direction:column;gap:5px">
-      <img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" style="height:22px;width:auto;display:block;opacity:.7">
-      <span style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg)">Politely Radical</span>
-    </a>
-    <p style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;margin-top:.85rem;max-width:210px">Research, strategy, and evidence for people building things that matter.</p>
+    <div class="ft-logo"><img src="https://mwrcollective.com/wp-content/uploads/2025/09/MWR-Unity-Letters-White-2048x624.png" alt="MWR Collective" class="mwr-logo" style="height:22px"></div>
+    <span class="ft-tag">Politely Radical</span>
+    <p class="ft-desc">Research, strategy, and evidence for organisations working on problems that don't have easy answers.</p>
   </div>
   <div>
-    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Navigate</div>
-    <div style="display:flex;flex-direction:column;gap:.55rem">
-      <a href="/services.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s">Services</a>
-      <a href="/work.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Our Work</a>
-      <a href="/about.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">About</a>
-      <a href="/people.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">People</a>
-      <a href="/contact.html" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">Contact</a>
+    <div class="ft-col-label">Navigate</div>
+    <div class="ft-links">
+      <a href="services.html" class="ft-link">Services</a>
+      <a href="work.html" class="ft-link">Our Work</a>
+      <a href="about.html" class="ft-link">About</a>
+      <a href="people.html" class="ft-link">People</a>
+      <a href="contact.html" class="ft-link">Contact</a>
     </div>
   </div>
   <div>
-    <div style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1rem">Find Us</div>
-    <div style="display:flex;flex-direction:column;gap:.55rem">
-      <a href="mailto:contact@mwrcollective.com" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">contact@mwrcollective.com</a>
-      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none">LinkedIn</a>
-      <span style="font-size:.82rem;font-weight:300;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
+    <div class="ft-col-label">Find Us</div>
+    <div class="ft-links">
+      <a href="mailto:contact@mwrcollective.com" class="ft-link">contact@mwrcollective.com</a>
+      <a href="https://www.linkedin.com/company/mwrcollective" target="_blank" rel="noopener" class="ft-link">LinkedIn</a>
+      <span class="ft-link" style="cursor:default;color:rgba(255,255,255,.22)">DPIIT Recognised Startup</span>
     </div>
   </div>
 </footer>
-<div style="border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 3.2rem;display:flex;justify-content:space-between;background:var(--ink);position:relative;z-index:10">
-  <span style="font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.16)">© 2026 Mindworld Research Private Limited</span>
-  <span style="font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.1)">New Delhi · India</span>
+<div class="ft-copy">
+  <span class="ft-copy-l">© 2026 Mindworld Research Private Limited</span>
+  <span class="ft-copy-r">New Delhi · India</span>
 </div>
-
 </main>
 <div id="bbar">
   <div class="bb-l">
@@ -316,20 +265,17 @@ const cur=document.getElementById('cur'),crr=document.getElementById('crr');
 let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,rx=mx,ry=my;
 window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
 (function t(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.07;ry+=(my-ry)*.07;cur.style.left=cx+'px';cur.style.top=cy+'px';crr.style.left=rx+'px';crr.style.top=ry+'px';requestAnimationFrame(t)})();
-document.querySelectorAll('a,button,.mf-principle,.ag-cell').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
-// PLASMA — amber dominant
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'))});
 (function(){
   function h(c){return[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)]}
   const orbs=[
-    {c:'#D4823E',xf:.16,yf:.20,xp:0,  yp:1.2,xa:.38,ya:.32,xc:.35,yc:.45,r:560,a:.62},
-    {c:'#9A5C28',xf:.10,yf:.14,xp:2.2,yp:0.6,xa:.30,ya:.38,xc:.20,yc:.65,r:480,a:.50},
-    {c:'#D4823E',xf:.20,yf:.12,xp:1.4,yp:2.8,xa:.34,ya:.26,xc:.70,yc:.28,r:500,a:.48},
-    {c:'#9A5C28',xf:.12,yf:.18,xp:3.0,yp:0.9,xa:.28,ya:.36,xc:.78,yc:.62,r:440,a:.42},
-    {c:'#C8203A',xf:.18,yf:.10,xp:0.7,yp:2.4,xa:.32,ya:.30,xc:.55,yc:.80,r:420,a:.28},
-    {c:'#D4823E',xf:.08,yf:.16,xp:1.8,yp:1.5,xa:.36,ya:.28,xc:.15,yc:.30,r:380,a:.35},
-    {c:'#6B3FA0',xf:.22,yf:.14,xp:2.6,yp:3.2,xa:.24,ya:.34,xc:.85,yc:.40,r:360,a:.22},
-    {c:'#9A5C28',xf:.14,yf:.22,xp:0.3,yp:0.8,xa:.28,ya:.42,xc:.48,yc:.18,r:400,a:.32},
-  ];
+  {c:'#D4823E',xf:.16,yf:.20,xp:0,  yp:1.2,xa:.38,ya:.32,xc:.35,yc:.45,r:560,a:1.0},
+  {c:'#9A5C28',xf:.10,yf:.14,xp:2.2,yp:0.6,xa:.30,ya:.38,xc:.20,yc:.65,r:480,a:.85},
+  {c:'#D4823E',xf:.20,yf:.12,xp:1.4,yp:2.8,xa:.34,ya:.26,xc:.70,yc:.28,r:500,a:.80},
+  {c:'#9A5C28',xf:.12,yf:.18,xp:3.0,yp:0.9,xa:.28,ya:.36,xc:.78,yc:.62,r:440,a:.75},
+  {c:'#C8203A',xf:.18,yf:.10,xp:0.7,yp:2.4,xa:.32,ya:.30,xc:.55,yc:.80,r:420,a:.50},
+  {c:'#6B3FA0',xf:.22,yf:.14,xp:2.6,yp:3.2,xa:.24,ya:.34,xc:.85,yc:.40,r:360,a:.40},
+];
   const canvas=document.getElementById('plasma'),ctx=canvas.getContext('2d');
   let W,H,t=0,pmx=.5,pmy=.5;
   const RGB=orbs.map(o=>h(o.c));
@@ -337,177 +283,41 @@ document.querySelectorAll('a,button,.mf-principle,.ag-cell').forEach(el=>{el.add
   resize();window.addEventListener('resize',resize);
   window.addEventListener('mousemove',e=>{pmx=e.clientX/W;pmy=e.clientY/H});
   function draw(){
-    ctx.fillStyle='#0A0908';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#13100F';ctx.fillRect(0,0,W,H);
     ctx.globalCompositeOperation='screen';
     orbs.forEach((orb,i)=>{
       let x=(orb.xc+Math.sin(t*orb.xf+orb.xp)*orb.xa)*W;
       let y=(orb.yc+Math.cos(t*orb.yf+orb.yp)*orb.ya)*H;
       x+=(pmx*W-x)*.018;y+=(pmy*H-y)*.018;
       const r=orb.r*(0.82+Math.sin(t*orb.xf*1.7+i*.8)*.18);
-      const a=orb.a*0.40*(0.78+Math.sin(t*orb.yf*1.3+i*1.2)*.22);
+      const a=orb.a*0.4*(0.78+Math.sin(t*orb.yf*1.3+i*1.2)*.22);
       const g=ctx.createRadialGradient(x,y,0,x,y,r);
       const[R,G,B]=RGB[i];
-      g.addColorStop(0,`rgba(${R},${G},${B},${a})`);g.addColorStop(0.3,`rgba(${R},${G},${B},${a*.65})`);
-      g.addColorStop(0.6,`rgba(${R},${G},${B},${a*.25})`);g.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      g.addColorStop(0,`rgba(${R},${G},${B},${a})`);
+      g.addColorStop(.3,`rgba(${R},${G},${B},${a*.6})`);
+      g.addColorStop(.65,`rgba(${R},${G},${B},${a*.22})`);
+      g.addColorStop(1,`rgba(${R},${G},${B},0)`);
       ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
     });
-    for(let i=0;i<5;i++){
+    for(let i=0;i<6;i++){
       const ly=H*(Math.abs(Math.sin(t*.07+i*1.37+i*.41))%1);
-      const a=(0.03+Math.sin(t*.4+i*1.9)*.012)*0.40;
-      const hw=90+Math.sin(t*.12+i)*60;
+      const a=(0.04+Math.sin(t*.4+i*1.9)*.02)*0.4;
+      const hw=110+Math.sin(t*.12+i)*70;
       const lx=W*(Math.abs(Math.sin(t*.04+i*2.6))%1);
       const[R,G,B]=RGB[i%RGB.length];
       const lg=ctx.createLinearGradient(lx-hw,ly,lx+hw,ly);
-      lg.addColorStop(0,`rgba(${R},${G},${B},0)`);lg.addColorStop(.5,`rgba(${R},${G},${B},${a})`);lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
-      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1,hw*2,2);
+      lg.addColorStop(0,`rgba(${R},${G},${B},0)`);
+      lg.addColorStop(.5,`rgba(${R},${G},${B},${a})`);
+      lg.addColorStop(1,`rgba(${R},${G},${B},0)`);
+      ctx.fillStyle=lg;ctx.fillRect(lx-hw,ly-1.5,hw*2,3);
     }
     ctx.globalCompositeOperation='source-over';
-    t+=.004;requestAnimationFrame(draw);
+    t+=0.004;requestAnimationFrame(draw);
   }
   draw();
 })();
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
-
-<style>
-@media(max-width:768px){
-  html{font-size:15px}body{cursor:auto}
-  #cur,#crr{display:none}
-  nav{padding:0 1.25rem}
-  .nav-r .nav-link{display:none}
-  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
-  #bbar{padding:0 1.25rem}
-  .bb-r{display:none}
-  #page-hero{padding:calc(52px + 3rem) 1.25rem 3rem;grid-template-columns:1fr;gap:2rem}
-  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
-  .ph-ghost{display:none}
-}
-</style>
-
-
-<style>
-/* ── MOBILE RESPONSIVE ── */
-@media(max-width:768px){
-  html{font-size:15px}
-  body{cursor:auto}
-  #cur,#crr{display:none}
-  nav{padding:0 1.25rem}
-  .nav-r .nav-link{display:none}
-  .nav-cta{font-size:.55rem;padding:.32rem .7rem}
-  #bbar{padding:0 1.25rem}
-  .bb-r{display:none}
-
-  /* Page heroes */
-  #page-hero{
-    padding:calc(52px + 3rem) 1.25rem 3rem;
-    grid-template-columns:1fr;
-    gap:2rem;
-  }
-  .ph-title{font-size:clamp(2.4rem,10vw,3.8rem)}
-  .ph-ghost{display:none}
-  .ph-jumps{grid-template-columns:1fr 1fr}
-
-  /* Services */
-  #approach{grid-template-columns:1fr;padding:2.5rem 1.25rem}
-  .approach-text{font-size:1.1rem}
-  .svc-main{grid-template-columns:1fr}
-  .svc-left{
-    position:relative;top:auto;
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    padding:2rem 1.25rem
-  }
-  .svc-right{padding:2rem 1.25rem}
-  .connect-flow{grid-template-columns:1fr 1fr}
-  #connect{padding:4rem 1.25rem}
-  .connect-header{margin-bottom:2rem}
-  .connect-cta{flex-direction:column;gap:1.5rem;padding:2rem 1.25rem}
-  .cc-actions{width:100%;flex-direction:column}
-  .cc-actions .btn-p,.cc-actions .btn-o{width:100%;justify-content:center}
-
-  /* Work */
-  .sector-header{
-    grid-template-columns:40px 1fr auto;
-    padding:1.5rem 1.25rem;
-    gap:.85rem
-  }
-  .sh-tagline{display:none}
-  .sector-body-content{
-    grid-template-columns:1fr;
-    padding:1.5rem 1.25rem 2.5rem
-  }
-  #work-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .wc-right{flex-direction:column;width:100%}
-  .wc-right .btn-p,.wc-right .btn-o{width:100%;justify-content:center}
-  #sectors-note{flex-direction:column;padding:1.5rem 1.25rem;gap:.75rem}
-
-  /* About */
-  #manifesto{
-    grid-template-columns:1fr;
-    padding:4rem 1.25rem;
-    gap:3rem
-  }
-  .mf-headline{font-size:clamp(1.8rem,8vw,2.6rem)}
-  #name-section{
-    grid-template-columns:1fr;
-    padding:2.5rem 1.25rem;
-    gap:1rem
-  }
-  #approach-grid{padding:4rem 1.25rem}
-  .ag-grid{grid-template-columns:1fr 1fr}
-  #about-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .ac-right{flex-direction:column;width:100%}
-  .ac-right .btn-p,.ac-right .btn-o{width:100%;justify-content:center}
-  #page-hero .ph-inner{grid-template-columns:1fr;gap:2rem}
-
-  /* People */
-  .person-card{grid-template-columns:1fr}
-  .pc-left{
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    padding:2rem 1.25rem
-  }
-  .pc-right{padding:2rem 1.25rem}
-  #people-cta{
-    grid-template-columns:1fr;
-    padding:3.5rem 1.25rem;
-    gap:2rem
-  }
-  .pct-right{flex-direction:column;width:100%}
-  .pct-right .btn-p,.pct-right .btn-o{width:100%;justify-content:center}
-
-  /* Contact */
-  main[style*="grid-template-columns:1fr 1fr"],
-  main{grid-template-columns:1fr !important}
-  .ct-left{
-    border-right:none;
-    border-bottom:1px solid rgba(255,255,255,.07);
-    padding:4rem 1.25rem 3rem
-  }
-  .ct-right{padding:3rem 1.25rem 4rem}
-  .ct-headline{font-size:clamp(2.2rem,9vw,3.5rem)}
-  .form-row{grid-template-columns:1fr}
-}
-
-@media(min-width:769px) and (max-width:1024px){
-  nav,#bbar{padding-left:2rem;padding-right:2rem}
-  #page-hero{padding-left:2rem;padding-right:2rem}
-  .svc-main{grid-template-columns:220px 1fr}
-  .person-card{grid-template-columns:260px 1fr}
-  .sector-body-content{grid-template-columns:1fr}
-  #manifesto{padding:5rem 2rem;gap:3rem}
-  .connect-flow{grid-template-columns:1fr 1fr}
-}
-</style>
-
 </body>
 </html>
